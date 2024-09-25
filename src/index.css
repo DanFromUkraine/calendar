@@ -1,15 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    .font_gothic {
-        font-family: "Zen Kaku Gothic Antique", sans-serif;
-    }
+  .font_gothic {
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+  }
 }
 
 @layer components {
-        
+  .gen_input {
+    @apply flex flex-col bg-light_gray w-full py-2.5 px-4 rounded-lg;
+  }
+  .gen_input span {
+    @apply text-dark_gray text-sm font-medium;
+  }
+  .gen_input input {
+    @apply bg-transparent focus:outline-none;
+  }
 }

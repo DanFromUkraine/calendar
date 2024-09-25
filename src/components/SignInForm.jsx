@@ -2,12 +2,12 @@ import GenFormInput from "./GenFormInput";
 
 export default function SignInForm({setHasAccount}) {
   return (
-    <div>SignInForm
+    <>
         <GenFormInput />
 
-        <span onClick={setHasAccount.bind(null, false)}>
-          Are you a Newbie? <b>GET STARTED</b>
+        <span onClick={setHasAccount.bind(null, false)} className="text-base flex justify-center gap-1 mt-2">
+          <span>Are you a Newbie?</span> <b className="border-b-[1px]">GET STARTED</b>
         </span>
-    </div>   
+    </>   
   )
 }
