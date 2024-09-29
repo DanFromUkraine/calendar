@@ -12,7 +12,7 @@ export default function Sidebar() {
     quick_access: { curr_months_days, curr_month },
   } = all_data;
 
-  console.log("render sidebar");
+  console.log("render sidebar ", {curr_months_days});
   
 
 

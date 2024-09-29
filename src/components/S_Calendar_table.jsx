@@ -1,15 +1,21 @@
 import Cell from "./Cell";
 import { Data } from "../context";
 import { useContext } from "react";
+import { Get_month } from "../date";
+import { day_names } from "../constants";
 
-export default function S_Calendar_table({ curr_months_days, curr_month }) {
+export default function S_Calendar_table() {
   const {
     all_data: { quick_access },
     set_all_data,
   } = useContext(Data);
   const { selected_month } = quick_access;
 
-  const day_names = ["m", "t", "w", "t", "f", "s", "s"];
+  const curr_months_days = Get_month(selected_month).days;
+
+  console.log({curr_months_days});
+  
+
   const start_at = curr_months_days[0].day_of_week - 1;
 
   const handle_click = (day) => {
@@ -28,7 +34,7 @@ export default function S_Calendar_table({ curr_months_days, curr_month }) {
       {start_at >= 1 && (
         <div className={`grid grid-cols-subgrid col-span-${start_at}`}></div>
       )}
-      {curr_months_days &&
+      {Array.isArray(curr_months_days) &&
         curr_months_days.map(({ day_number, is_selected }) => {
             console.log(is_selected);
             

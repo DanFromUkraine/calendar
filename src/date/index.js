@@ -1,6 +1,6 @@
 import { format, add, sub, startOfMonth, endOfMonth, eachDayOfInterval } from "date-fns";
-
-
+import { Data } from "../context";
+import { useContext } from "react";
 
 function get_months() {
     const now = new Date();
@@ -18,6 +18,7 @@ function get_month_data(month) {
     const month_data = {};
     month_data.name = format(month, "MMMM");
     month_data.days = get_days(month);
+    month_data.date = month;
 
     return month_data;
 }
@@ -46,17 +47,21 @@ function get_days_in_month(month) {
     return days_array;
 }
 
+export function Get_month(month) {
+    const { all_data } = useContext(Data);
+    return all_data.all.find(({name}) => month === name);
+}
 
 export function init_data_obj() {
     const months = get_months(),
         all_notes = [],
-            curr_month = format(new Date(), "MMMM");
+        curr_month = format(new Date(), "MMMM");
 
     const data = {
         all: [],
         quick_access: {
             curr_month,
-            curr_months_days: get_days(new Date()),
+            curr_months_days: get_days(),
             marked_notes: [],
             all_notes,
             sidebar_events: all_notes,

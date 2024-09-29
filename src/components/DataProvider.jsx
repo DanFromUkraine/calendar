@@ -15,6 +15,7 @@ function data_handler(state, action) {
     day_copy.is_selected = true
     console.log({ day_copy });
 
+  
     return {
       ...state_copy,
     };

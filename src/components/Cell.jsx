@@ -14,7 +14,7 @@ export default function Cell({ text_color, is_selected, children, onClick, day }
 
   return (
     <div className={div_classes} onClick={onClick?.bind(null, day)}>
-      <div className={`rounded-full ${is_selected && "text-blue"}`}>{children}</div>
+      <div className={`rounded-full ${is_selected && "bg-blue text-white p-1"}`}>{children}</div>
     </div>
   );
 }
