@@ -1,13 +1,12 @@
 import { useContext } from "react";
-import { Logined } from "../context/context";
+import { Logined } from "../context";
 import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
-  const { isLogined } = useContext(Logined);
-  if (!isLogined) {
+  const { logined } = useContext(Logined);
+  if (!logined) {
     return <Navigate to="/login" />;
   }
 
-  return typeof children === 'function' ? children() : children;
+  return typeof children === "function" ? children() : children;
 }
-
