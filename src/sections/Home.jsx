@@ -1,13 +1,15 @@
 import { Sidebar } from "../components";
-// import { useContext } from "react";
-// import { Data } from "../context";
-import DataProvider from "../components/DataProvider";
+
+import ShowSidebarProvider from "../context/ShowSidebarProvider";
+import DataProvider from "../context/DataProvider";
 
 export default function Home() {
   return (
     <main className="font_poppins">
       <DataProvider>
-        <Sidebar />
+        <ShowSidebarProvider>
+          <Sidebar />
+        </ShowSidebarProvider>
       </DataProvider>
     </main>
   );

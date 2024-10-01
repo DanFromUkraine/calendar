@@ -29,7 +29,7 @@ export default function Sidebar() {
   return (
     <div className="w-[250px] h-screen border-2 border-border px-4">
       <div className="flex justify-between h-12 items-center">
-        <div className="flex items-center">
+        <div className="flex items-center w-3/4 justify-between">
           <span onClick={handle_arrow_left_click}>
             <ArrowBackIosIcon fontSize="small" />
           </span>

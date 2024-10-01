@@ -8,5 +8,5 @@ export default function ProtectedRoute({ children }) {
     return <Navigate to="/login" />;
   }
 
-  return typeof children === "function" ? children() : children;
+  return <>{children}</>;
 }

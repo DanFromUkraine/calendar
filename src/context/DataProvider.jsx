@@ -1,4 +1,4 @@
-import { Data } from "../context";
+import { Data } from ".";
 import { init_data_obj } from "../date";
 import { useReducer } from "react";
 import { REDUCER_TYPES } from "../constants";
@@ -35,7 +35,7 @@ function curr_month_nav_left(state_copy) {
 function curr_month_nav_right(state_copy) {
   let curr_month_ind = state_copy.quick_access.curr_month.arr_ind;
   state_copy.quick_access.curr_month =
-    curr_month_ind < state_copy.all.length
+    curr_month_ind < state_copy.all.length - 1
       ? state_copy.all[curr_month_ind + 1]
       : state_copy.quick_access.curr_month;
 

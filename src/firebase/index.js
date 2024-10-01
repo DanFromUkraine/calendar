@@ -1,12 +1,8 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, signInWithRedirect, getAuth, getRedirectResult, createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyCafBSAuQMeoGQlQu7Czulns1ZdQiih3Kg",
     authDomain: "calendar-562a6.firebaseapp.com",
@@ -17,7 +13,6 @@ const firebaseConfig = {
     measurementId: "G-N9LW3N455H"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 
@@ -82,3 +77,20 @@ export function createUserWithPassword({ email, password }, on_success, on_fail)
             // ..
         });
 }
+
+
+const db = getFirestore(app);
+
+import { collection, addDoc } from "firebase/firestore"; 
+
+// try {
+//   const docRef = addDoc(collection(db, "users"), {
+//     first: "Ada",
+//     last: "Lovelace",
+//     born: 1815
+//   });
+// //   console.log("Document written with ID: ", docRef.id);
+// } catch (e) {
+//   console.error("Error adding document: ", e);
+// }
+

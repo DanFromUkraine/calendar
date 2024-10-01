@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Logined } from "../context";
+import { Logined } from ".";
 
 export default function AuthProvider({ children }) {
-  const [logined, setLogined] = useState(true);
+  const [logined, setLogined] = useState(false);
   const login = () => setLogined(true);
   const logout = () => setLogined(false);
 
