@@ -7,13 +7,16 @@ import { REDUCER_TYPES } from "../constants";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Note from "./Note";
+import { NOTES_COLOR_NAMES } from "../constants";
 
 
 export default function Sidebar() {
   const {NAV_MONTH_LAST, NAV_MONTH_NEXT} = REDUCER_TYPES;
+  const {green} = NOTES_COLOR_NAMES;
   const {
     all_data: {
-      quick_access: { curr_month },
+      quick_access: { curr_month, all_notes, last_day_selected },
     },
     set_all_data
   } = useContext(Data);
@@ -46,7 +49,9 @@ export default function Sidebar() {
       </div>
       <div>
         <h2>Upcoming events</h2>
-        <div className="flex flex-col"></div>
+        <div className="flex flex-col">
+          <Note text={"some test text"} color={green} timestamp={"12:00"} is_completed={true}/>
+        </div>
       </div>
     </div>
   );
