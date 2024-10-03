@@ -21,6 +21,7 @@ export default {
         border: "#DADCE0",
         mid_gray: "#333333",
         blue: "#0C41FF",
+        gray_v6: "#50616B",
 
         [green]: {
           dot: "#2C5A41",

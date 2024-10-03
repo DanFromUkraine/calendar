@@ -15,12 +15,12 @@ function on_change_selected(state_copy, payload) {
   return state_copy;
 }
 
-function on_create_quick_link(state_copy, payload) {
-  state_copy.quick_access.curr_months_days = payload || [
-    { error: "something bad happened" },
-  ];
-  return state_copy;
-}
+// function on_create_quick_link(state_copy, payload) {
+//   state_copy.quick_access.curr_months_days = payload || [
+//     { error: "something bad happened" },
+//   ];
+//   return state_copy;
+// }
 
 function curr_month_nav_left(state_copy) {
   let curr_month_ind = state_copy.quick_access.curr_month.arr_ind;
@@ -43,7 +43,7 @@ function curr_month_nav_right(state_copy) {
 }
 
 function data_handler(state, action) {
-  const { CHANGE_SEL, CREATE_QL, NAV_MONTH_LAST, NAV_MONTH_NEXT } =
+  const { CHANGE_SEL, NAV_MONTH_LAST, NAV_MONTH_NEXT } =
     REDUCER_TYPES;
   const { type, payload } = action;
   const state_copy = structuredClone(state);
@@ -51,8 +51,8 @@ function data_handler(state, action) {
   switch (type) {
     case CHANGE_SEL:
       return on_change_selected(state_copy, payload);
-    case CREATE_QL:
-      return on_create_quick_link(state_copy, payload);
+    // case CREATE_QL:
+    //   return on_create_quick_link(state_copy, payload);
     case NAV_MONTH_LAST:
       return curr_month_nav_left(state_copy);
     case NAV_MONTH_NEXT:

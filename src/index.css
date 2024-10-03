@@ -24,4 +24,7 @@
   .gen_input input {
     @apply bg-transparent focus:outline-none;
   }
+  /* .colors_list_invisible span {
+    @app
+  } */
 }
