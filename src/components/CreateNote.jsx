@@ -1,45 +1,21 @@
-import { Formik, Form, Field, ErrorMessage, useField } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import CreateIcon from "@mui/icons-material/Create";
-import Inputmask from "inputmask";
 
-import { NOTES_COLOR_NAMES } from "../constants";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import classNames from "classnames";
 
-const Color_option = ({ color, onClick }) => {
-  return (
-    <span
-      onClick={onClick?.bind(null, color)}
-      className={`bg-${color} !w-4 h-4 rounded-md border-2 border-gray_v6`}
-    ></span>
-  );
-};
+import { NOTES_COLOR_NAMES } from "../constants";
+import { Color_option } from "./Color_option";
+import Formik_date_input from "./Formik_date_input";
+import { CREATE_NOTE_SCHEMA } from "../constants";
+import ErrorWrapper from "./ErrorWrapper";
 
-const Date_input = ({ ...props }) => {
-  const [field] = useField(props);
-
-  useEffect(() => {
-    Inputmask({regex: "[0-2][0-9]:[0-5][0-9]"}).mask(document.getElementById("date_inp"));
-  });
-  return (
-    <input
-      type="text"
-      id="date_inp"
-      placeholder="12:59"
-      {...props}
-      {...field}
-    />
-  );
-};
-
-export default function CreateNote({ on_cancel, on_submit }) {
+export default function CreateNote({ on_cancel, on_submit, initial_state }) {
   const [selected_color, set_selected_color] = useState(
     NOTES_COLOR_NAMES.green + "-dot"
   );
   const [opened, set_opened] = useState(false);
-
-  // const date_inp = useRef();
 
   const handle_textarea_size = (e) => {
     e.target.style.height = "auto";
@@ -55,6 +31,8 @@ export default function CreateNote({ on_cancel, on_submit }) {
     set_opened(false);
   };
 
+  const [date_inp_completed, set_date_inp_completed] = useState(false);
+
   const colors_list_classes = classNames(
     "grid-cols-2 gap-1",
     { "hidden ": !opened },
@@ -63,7 +41,15 @@ export default function CreateNote({ on_cancel, on_submit }) {
 
   return (
     <Formik
-      initialValues={{ title: "", description: "", date: "" }}
+      initialValues={
+        initial_state || {
+          title: "",
+          description: "",
+          date: "",
+          selected_color: selected_color,
+        }
+      }
+      validationSchema={CREATE_NOTE_SCHEMA}
       onSubmit={on_submit}
     >
       {() => (
@@ -77,17 +63,22 @@ export default function CreateNote({ on_cancel, on_submit }) {
                 placeholder="Note name (input)"
                 className="focus:outline-none"
               />
-              <ErrorMessage type="text" name="title" />
+              <ErrorWrapper>
+                <ErrorMessage type="text" name="title" />
+              </ErrorWrapper>
             </span>
           </div>
           <div className="w-full">
-            <textarea
+            {/* <textarea></textarea> */}
+
+            <Field
               type="text"
-              name="decription"
+              name="description"
               placeholder="Description (optional)"
               onInput={handle_textarea_size}
               className="focus:outline-none w-full resize-none overflow-hidden "
-            ></textarea>
+              as="textarea"
+            />
           </div>
 
           <div className="flex items-start gap-4">
@@ -118,7 +109,13 @@ export default function CreateNote({ on_cancel, on_submit }) {
           <div className="w-full flex items-center gap-4">
             <span>{"Date (optional):"}</span>
             <div className="">
-              <Date_input name="date" className="text-center w-12" />
+              <Formik_date_input
+                name="date"
+                set_date_inp_completed={set_date_inp_completed}
+                className={`!w-12 focus:outline-none p-1 ${
+                  date_inp_completed && "bg-lime-500 rounded-md"
+                }`}
+              />
             </div>
           </div>
           <div className="flex justify-between text-base font-semibold">

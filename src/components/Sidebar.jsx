@@ -9,7 +9,6 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Note from "./Note";
 import CreateNote from "./CreateNote";
-// import { NOTES_COLOR_NAMES } from "../constants";
 
 export default function Sidebar() {
   const { NAV_MONTH_LAST, NAV_MONTH_NEXT } = REDUCER_TYPES;
@@ -31,6 +30,11 @@ export default function Sidebar() {
   const notes = last_day_selected.notes || all_notes;
   const note_list = notes.map((note, i) => <Note key={i} note={note} />);
 
+  const handle_create_note_submit = (values, utils) => {
+    
+    console.log({values, utils});
+  }
+
   return (
     <div className="w-[250px] h-screen border-2 border-border px-4">
       <div className="flex justify-between h-12 items-center">
@@ -50,7 +54,7 @@ export default function Sidebar() {
         <S_Calendar_table />
       </div>
       {is_creating_note ? (
-        <CreateNote />
+        <CreateNote on_submit={handle_create_note_submit}/>
       ) : (
         <div>
           <h2>Upcoming events</h2>

@@ -21,6 +21,14 @@ export const USER_SCHEMA = yup.object({
     password: yup.string().min(4, "password is too short").required()
 })
 
+export const CREATE_NOTE_SCHEMA = yup.object({
+    title: yup.string().required("Required"),
+    date: yup.string().min(1, (arg) => {
+        console.log(arg);
+        
+    })
+});
+
 
 export const NOTES_COLOR_NAMES = {
     green: "green",
