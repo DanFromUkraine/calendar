@@ -51,7 +51,7 @@ export default function CreateNote({ on_cancel, on_submit, initial_state, day_se
           day: day_selected
         }
       }
-      // validationSchema={CREATE_NOTE_SCHEMA}
+      validationSchema={CREATE_NOTE_SCHEMA}
       onSubmit={on_submit}
     >
       {() => (

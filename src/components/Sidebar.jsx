@@ -35,7 +35,7 @@ export default function Sidebar() {
     set_all_data({ type: NAV_MONTH_NEXT });
   };
 
-  const notes_list = last_day_selected?.notes || all_notes;
+  const notes_list = curr_month.days.find(({day_number}) => day_number === last_day_selected.day_number)?.notes || all_notes;
 
   const handle_create_note_submit = (values, utils) => {
     set_is_creating_note(false);
