@@ -12,7 +12,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CreateNote from "./CreateNote";
 import { SidebarUtils } from "../context";
 
-import RenderNotes from "./AllNotes";
+import RenderNotes from "./RenderNotes";
 
 export default function Sidebar() {
   const { NAV_MONTH_LAST, NAV_MONTH_NEXT, CREATE_NOTE } = REDUCER_TYPES;

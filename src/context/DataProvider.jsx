@@ -21,7 +21,7 @@ function on_change_selected(state_copy, payload) {
     q_access.last_day_selected = day;
   }
 
-  return state_copy;
+  return after_action(state_copy);
 }
 
 function after_action(state_copy) {
@@ -54,18 +54,18 @@ function on_create_note(state_copy, payload) {
   const notes = state_copy.quick_access.curr_month.days.find(
     ({ day_number }) => day_number === payload.day.day_number
   ).notes;
-
   notes.push(payload);
 
-  console.log(notes);
 
   return after_action(state_copy);
 }
 
-function on_clear_last_day_selected(state_copy) {
-  state_copy.quick_access.last_day_selected.is_selected = false;
-  state_copy.quick_access.last_day_selected = null;
-  return state_copy;
+function on_change_note_is_done(state_copy, payload) {
+  const day = state_copy.quick_access.last_day_selected;
+  const note = day.notes.find(({ title }) => title === payload.title);
+  note.is_done = !note.is_done;
+
+  return after_action(state_copy);
 }
 
 function data_handler(state, action) {
@@ -74,7 +74,7 @@ function data_handler(state, action) {
     NAV_MONTH_LAST,
     NAV_MONTH_NEXT,
     CREATE_NOTE,
-    CLEAR_LAST_DAY_SELECTED,
+    CHANGE_NOTE_IS_DONE,
   } = REDUCER_TYPES;
   const { type, payload } = action;
   const state_copy = structuredClone(state);
@@ -88,16 +88,15 @@ function data_handler(state, action) {
       return curr_month_nav_right(state_copy);
     case CREATE_NOTE:
       return on_create_note(state_copy, payload);
-    case CLEAR_LAST_DAY_SELECTED:
-      return on_clear_last_day_selected(state_copy);
+    case CHANGE_NOTE_IS_DONE:
+      return on_change_note_is_done(state_copy, payload);
   }
 }
 
 export default function DataProvider({ children }) {
   const [all_data, set_all_data] = useReducer(data_handler, init_data_obj());
 
-  console.log({all_data});
-  
+  console.log({ all_data });
 
   return (
     <Data.Provider value={{ all_data, set_all_data }}>{children}</Data.Provider>

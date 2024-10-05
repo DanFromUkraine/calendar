@@ -59,7 +59,7 @@ export function init_data_obj() {
         quick_access: {}
     }
 
-
+    
     if (!ls_data) {
         const months = get_months(),
             curr_month = format(new Date(), "MMMM");

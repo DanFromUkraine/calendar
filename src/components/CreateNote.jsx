@@ -47,7 +47,7 @@ export default function CreateNote({ on_cancel, on_submit, initial_state, day_se
           description: "",
           date: "",
           selected_color: selected_color,
-          is_completed: false,
+          is_done: false,
           day: day_selected
         }
       }

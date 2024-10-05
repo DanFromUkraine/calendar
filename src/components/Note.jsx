@@ -5,19 +5,19 @@ import { useContext } from "react";
 import { REDUCER_TYPES } from "../constants";
 
 export default function Note({ note }) {
-  const { title, selected_color, date, is_completed } = note;
+  const { title, selected_color, date, is_done } = note;
   const { set_all_data } = useContext(Data);
-
-  const color = selected_color?.slice(0, -4);
+  
+  // console.log("note day", {day});
   
 
-  const dot = classNames("w-2 h-2 rounded-full", `bg-${color}-dot`);
-  const span = classNames(`text-${color}-text`, {
-    "text-slate-600": is_completed,
+  const dot = classNames("w-2 h-2 rounded-full", `bg-${selected_color}-dot`);
+  const span = classNames(`text-${selected_color}-text`, {
+    "text-slate-600": is_done,
   });
   const cont = classNames(
     "flex justify-between items-center text-md font-semibold",
-    { "line-through": is_completed }
+    { "line-through": is_done }
   );
 
   const handle_click = () => {
@@ -26,7 +26,7 @@ export default function Note({ note }) {
   return (
     <div className={cont} onClick={handle_click}>
       <span className="flex gap-0.5 items-center ">
-        {is_completed ? (
+        {is_done ? (
           <span className="">
             <CheckIcon style={{ width: "16px", height: "16px" }} />
           </span>
