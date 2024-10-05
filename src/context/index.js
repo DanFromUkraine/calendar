@@ -5,4 +5,4 @@ console.log({size})
 
 export const Logined = createContext(false);
 export const Data = createContext({});
-export const ShowSidebar = createContext(false);
+export const SidebarUtils = createContext(false);

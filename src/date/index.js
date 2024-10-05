@@ -28,14 +28,16 @@ function get_days_data(month) {
     const days = new Set();
     const days_in_month = get_days_in_month(month);
     days_in_month.forEach((day, i) => {
-        days.add({
+        const day_obj = {
             day,
             day_number: format(day, "dd"),
             day_of_week: format(day, "i"),
             isStartOfMonth: i === 0,
             notes: [],
             is_selected: false
-        })
+        }
+        day_obj.day_obj = day_obj;
+        days.add(day_obj)
     })
 
     return [...days]

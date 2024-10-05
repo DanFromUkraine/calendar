@@ -5,8 +5,9 @@ export default function Cell({
   is_selected,
   children,
   onClick,
-  day,
+  day
 }) {
+  
   const div_classes = classNames("w-8 h-8 flex justify-center items-center", {
       text_color: text_color,
     }),

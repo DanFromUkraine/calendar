@@ -50,6 +50,9 @@ export default {
       },
       fontSize: {
         sm: "10.24px"
+      },
+      width: {
+        sidebar: "250px"
       }
     },
   },

@@ -28,8 +28,7 @@ export default function S_Calendar_table() {
       )}
       {Array.isArray(curr_month.days) &&
         curr_month.days.map(({ day_number, is_selected }) => {
-          console.log(is_selected);
-
+                   
           return (
             <Cell
               key={day_number}

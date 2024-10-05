@@ -1,6 +1,6 @@
 import { Sidebar } from "../components";
 
-import ShowSidebarProvider from "../context/ShowSidebarProvider";
+import ShowSidebarProvider from "../context/SidebarProvider";
 import DataProvider from "../context/DataProvider";
 
 export default function Home() {
