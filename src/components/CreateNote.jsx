@@ -115,7 +115,7 @@ export default function CreateNote({ on_cancel, on_submit, initial_state, day_se
               <Formik_date_input
                 name="date"
                 set_date_inp_completed={set_date_inp_completed}
-                className={`!w-12 focus:outline-none p-1 ${
+                className={`!w-14 focus:outline-none p-1 ${
                   date_inp_completed && "bg-lime-500 rounded-md"
                 }`}
               />

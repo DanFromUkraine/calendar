@@ -27,6 +27,7 @@ function on_change_selected(state_copy, payload) {
 function after_action(state_copy) {
   write_data_in_ls(state_copy);
 
+  
   return state_copy;
 }
 
