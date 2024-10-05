@@ -13,8 +13,10 @@ import Note from "./Note";
 import CreateNote from "./CreateNote";
 import { SidebarUtils } from "../context";
 
+import RenderNotes from "./AllNotes";
+
 export default function Sidebar() {
-  const { NAV_MONTH_LAST, NAV_MONTH_NEXT } = REDUCER_TYPES;
+  const { NAV_MONTH_LAST, NAV_MONTH_NEXT, CREATE_NOTE } = REDUCER_TYPES;
 
   const {
     all_data: {
@@ -33,11 +35,13 @@ export default function Sidebar() {
     set_all_data({ type: NAV_MONTH_NEXT });
   };
 
-  const notes = last_day_selected?.notes || all_notes;
-  const note_list = notes?.map((note, i) => <Note key={i} note={note} />);
+  const notes_list = last_day_selected?.notes || all_notes;
 
   const handle_create_note_submit = (values, utils) => {
     set_is_creating_note(false);
+    set_all_data({ type: CREATE_NOTE, payload: values})
+    utils.resetForm();
+
     console.log({ values, utils });
   };
 
@@ -78,13 +82,11 @@ export default function Sidebar() {
         <CreateNote
           on_submit={handle_create_note_submit}
           on_cancel={handle_create_note_cancel}
+          day_selected={last_day_selected}
         />
       ) : (
         <>
-          <div>
-            <h2>Upcoming events</h2>
-            <div className="flex flex-col">{note_list}</div>
-          </div>
+          <RenderNotes notes_list={notes_list}/>          
 
           <div
             className={`absolute bottom-4 right-4 ${

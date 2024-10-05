@@ -23,10 +23,7 @@ export const USER_SCHEMA = yup.object({
 
 export const CREATE_NOTE_SCHEMA = yup.object({
     title: yup.string().required("Required"),
-    date: yup.string().min(1, (arg) => {
-        console.log(arg);
-        
-    })
+    date: yup.string()
 });
 
 

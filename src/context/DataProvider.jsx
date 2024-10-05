@@ -43,8 +43,22 @@ function curr_month_nav_right(state_copy) {
   return state_copy;
 }
 
+function on_create_note(state_copy, payload) {
+  const notes = state_copy.quick_access.curr_month.days.find(
+    ({ day_number }) => day_number === payload.day.day_number
+  ).notes;
+
+  notes.push(payload);
+
+  console.log(notes);
+  
+
+  return state_copy;
+}
+
 function data_handler(state, action) {
-  const { CHANGE_SEL, NAV_MONTH_LAST, NAV_MONTH_NEXT } = REDUCER_TYPES;
+  const { CHANGE_SEL, NAV_MONTH_LAST, NAV_MONTH_NEXT, CREATE_NOTE } =
+    REDUCER_TYPES;
   const { type, payload } = action;
   const state_copy = structuredClone(state);
 
@@ -55,6 +69,8 @@ function data_handler(state, action) {
       return curr_month_nav_left(state_copy);
     case NAV_MONTH_NEXT:
       return curr_month_nav_right(state_copy);
+    case CREATE_NOTE:
+      return on_create_note(state_copy, payload);
   }
 }
 

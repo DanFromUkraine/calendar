@@ -11,9 +11,9 @@ import Formik_date_input from "./Formik_date_input";
 import { CREATE_NOTE_SCHEMA } from "../constants";
 import ErrorWrapper from "./ErrorWrapper";
 
-export default function CreateNote({ on_cancel, on_submit, initial_state }) {
+export default function CreateNote({ on_cancel, on_submit, initial_state, day_selected }) {
   const [selected_color, set_selected_color] = useState(
-    NOTES_COLOR_NAMES.green + "-dot"
+    NOTES_COLOR_NAMES.green
   );
   const [opened, set_opened] = useState(false);
 
@@ -36,7 +36,7 @@ export default function CreateNote({ on_cancel, on_submit, initial_state }) {
   const colors_list_classes = classNames(
     "grid-cols-2 gap-1",
     { "hidden ": !opened },
-    { grid: opened }
+    { "grid": opened }
   );
 
   return (
@@ -47,9 +47,11 @@ export default function CreateNote({ on_cancel, on_submit, initial_state }) {
           description: "",
           date: "",
           selected_color: selected_color,
+          is_completed: false,
+          day: day_selected
         }
       }
-      validationSchema={CREATE_NOTE_SCHEMA}
+      // validationSchema={CREATE_NOTE_SCHEMA}
       onSubmit={on_submit}
     >
       {() => (
@@ -85,7 +87,7 @@ export default function CreateNote({ on_cancel, on_submit, initial_state }) {
             <div className="flex gap-1">
               <span>Color:</span>
               <span className="flex items-center">
-                <Color_option color={selected_color} />
+                <Color_option color={selected_color + "-dot"} />
               </span>
             </div>
 
@@ -100,6 +102,7 @@ export default function CreateNote({ on_cancel, on_submit, initial_state }) {
                   <Color_option
                     key={i}
                     color={`${classval}-dot`}
+                    clear_color={classval}
                     onClick={handle_color_click}
                   />
                 )

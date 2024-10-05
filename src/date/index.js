@@ -28,16 +28,14 @@ function get_days_data(month) {
     const days = new Set();
     const days_in_month = get_days_in_month(month);
     days_in_month.forEach((day, i) => {
-        const day_obj = {
+        days.add({
             day,
             day_number: format(day, "dd"),
             day_of_week: format(day, "i"),
             isStartOfMonth: i === 0,
             notes: [],
             is_selected: false
-        }
-        day_obj.day_obj = day_obj;
-        days.add(day_obj)
+        })
     })
 
     return [...days]
@@ -53,13 +51,6 @@ function get_days_in_month(month) {
 export function Get_month(month) {
     const { all_data } = useContext(Data);
     return all_data.all.find(({ name }) => month === name);
-}
-
-export function Create_link_days(month) {
-    const { all_data, set_all_data } = useContext(Data);
-    const days = all_data.all.find((it) => it.name === month).days;
-
-    set_all_data({ type: "create_quick_link", payload: days })
 }
 
 
@@ -82,7 +73,7 @@ export function init_data_obj() {
     const quick_access = {
         curr_month: data.all.find(({ name }) => name === curr_month),
         last_day_selected: {},
-        all_notes: []
+        all_notes: [{ body: "some text to render" }]
     };
     data.quick_access = quick_access;
 

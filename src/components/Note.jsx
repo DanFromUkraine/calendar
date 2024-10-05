@@ -5,15 +5,18 @@ import { useContext } from "react";
 import { REDUCER_TYPES } from "../constants";
 
 export default function Note({ note }) {
-  const { text, color, timestamp, is_completed } = note;
+  const { title, selected_color, date, is_completed } = note;
   const { set_all_data } = useContext(Data);
+
+  const color = selected_color?.slice(0, -4);
+  
 
   const dot = classNames("w-2 h-2 rounded-full", `bg-${color}-dot`);
   const span = classNames(`text-${color}-text`, {
     "text-slate-600": is_completed,
   });
   const cont = classNames(
-    "flex justify-between items-center text-sm font-semibold",
+    "flex justify-between items-center text-md font-semibold",
     { "line-through": is_completed }
   );
 
@@ -30,9 +33,9 @@ export default function Note({ note }) {
         ) : (
           <span className={dot}></span>
         )}
-        <span className={span}>{text}</span>
+        <span className={span}>{title}</span>
       </span>
-      <span className="text-mid_gray">{timestamp}</span>
+      <span className="text-mid_gray">{date}</span>
     </div>
   );
 }
