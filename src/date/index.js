@@ -1,6 +1,5 @@
 import { format, add, sub, startOfMonth, endOfMonth, eachDayOfInterval } from "date-fns";
-import { Data } from "../context";
-import { useContext } from "react";
+import { get_data_from_ls } from "../utils/ls";
 
 function get_months() {
     const now = new Date();
@@ -48,35 +47,37 @@ function get_days_in_month(month) {
     return days_array;
 }
 
-export function Get_month(month) {
-    const { all_data } = useContext(Data);
-    return all_data.all.find(({ name }) => month === name);
-}
-
-
 
 export function init_data_obj() {
+    const ls_data = get_data_from_ls();
 
-    const data = {
+    console.log({ls_data});
+    
+
+    const data = ls_data || {
         all: [],
         quick_access: {}
     }
 
-    const months = get_months(),
-        curr_month = format(new Date(), "MMMM");
 
-    months.forEach((month, i) => {
-        const month_data = get_month_data(month, i);
-        data.all.push(month_data);
-    })
+    if (!ls_data) {
+        const months = get_months(),
+            curr_month = format(new Date(), "MMMM");
 
-    const quick_access = {
-        curr_month: data.all.find(({ name }) => name === curr_month),
-        last_day_selected: {},
-        all_notes: [{ body: "some text to render" }]
-    };
-    data.quick_access = quick_access;
 
+        months.forEach((month, i) => {
+            const month_data = get_month_data(month, i);
+            data.all.push(month_data);
+        })
+
+        const quick_access = {
+            curr_month: data.all.find(({ name }) => name === curr_month),
+            last_day_selected: null,
+            all_notes: []
+        };
+
+        data.quick_access = quick_access;
+    }
 
     return data;
 }

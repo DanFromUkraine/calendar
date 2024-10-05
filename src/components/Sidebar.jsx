@@ -9,7 +9,6 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-import Note from "./Note";
 import CreateNote from "./CreateNote";
 import { SidebarUtils } from "../context";
 
@@ -35,11 +34,27 @@ export default function Sidebar() {
     set_all_data({ type: NAV_MONTH_NEXT });
   };
 
-  const notes_list = curr_month.days.find(({day_number}) => day_number === last_day_selected.day_number)?.notes || all_notes;
+  let notes_list = [];
+
+  if (last_day_selected !== null) {
+
+    console.log({last_day_selected});
+    
+
+    notes_list = curr_month.days.find(
+      ({ day_number }) => day_number === last_day_selected.day_number
+    )?.notes;
+
+    console.log({notes_list});
+    
+
+  } else {
+    notes_list = all_notes;
+  }
 
   const handle_create_note_submit = (values, utils) => {
     set_is_creating_note(false);
-    set_all_data({ type: CREATE_NOTE, payload: values})
+    set_all_data({ type: CREATE_NOTE, payload: values });
     utils.resetForm();
 
     console.log({ values, utils });
@@ -86,7 +101,7 @@ export default function Sidebar() {
         />
       ) : (
         <>
-          <RenderNotes notes_list={notes_list}/>          
+          <RenderNotes notes_list={notes_list} />
 
           <div
             className={`absolute bottom-4 right-4 ${
