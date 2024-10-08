@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { Fri, Mon, Sat, Sun, Thur, Tue, Wed } from "../assets";
 
 export const all_errs = {
     "auth/email-already-in-use": "email з такою назвою вже існує"
@@ -37,3 +38,33 @@ export const NOTES_COLOR_NAMES = {
     purple: "purple"
 }
 
+export const BIG_CALENDAR_DAYS = [
+    {
+        img: Mon,
+        name: "Mon"
+    },
+    {
+        img: Tue,
+        name: "Tue"
+    },
+    {
+        img: Wed,
+        name: "Wed"
+    },
+    {
+        img: Thur,
+        name: "Thur"
+    },
+    {
+        img: Fri,
+        name: "Fri"
+    },
+    {
+        img: Sat,
+        name: "Sat"
+    },
+    {
+        img: Sun,
+        name: "Sun"
+    }
+]

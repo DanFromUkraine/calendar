@@ -4,9 +4,11 @@ import { Data } from "../context";
 import { useContext } from "react";
 import { REDUCER_TYPES } from "../constants";
 
-export default function Note({ note }) {
+export default function Note(note) {
   const { title, selected_color, date, is_done } = note;
   const { set_all_data } = useContext(Data);
+
+  
 
   // console.log("note day", {day});
 

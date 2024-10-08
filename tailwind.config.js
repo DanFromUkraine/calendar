@@ -1,5 +1,5 @@
 import { NOTES_COLOR_NAMES } from './src/constants'
-const {green, red, yellow, green_v2, blue_v2, purple} = NOTES_COLOR_NAMES;
+const { green, red, yellow, green_v2, blue_v2, purple } = NOTES_COLOR_NAMES;
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -52,7 +52,8 @@ export default {
         sm: "10.24px"
       },
       width: {
-        sidebar: "250px"
+        sidebar: "250px",
+        sidebar_vw: "17vw"
       }
     },
   },

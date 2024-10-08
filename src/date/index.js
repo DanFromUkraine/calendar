@@ -59,7 +59,7 @@ export function init_data_obj() {
         quick_access: {}
     }
 
-    
+
     if (!ls_data) {
         const months = get_months(),
             curr_month = format(new Date(), "MMMM");
@@ -73,7 +73,7 @@ export function init_data_obj() {
         const quick_access = {
             curr_month: data.all.find(({ name }) => name === curr_month),
             last_day_selected: null,
-            all_notes: []
+            all_notes: [],
         };
 
         data.quick_access = quick_access;

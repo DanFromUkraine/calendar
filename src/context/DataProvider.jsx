@@ -27,7 +27,6 @@ function on_change_selected(state_copy, payload) {
 function after_action(state_copy) {
   write_data_in_ls(state_copy);
 
-  
   return state_copy;
 }
 
@@ -38,7 +37,7 @@ function curr_month_nav_left(state_copy) {
       ? state_copy.all[curr_month_ind - 1]
       : state_copy.quick_access.curr_month;
 
-  return state_copy;
+  return after_action(state_copy);
 }
 
 function curr_month_nav_right(state_copy) {
@@ -48,7 +47,7 @@ function curr_month_nav_right(state_copy) {
       ? state_copy.all[curr_month_ind + 1]
       : state_copy.quick_access.curr_month;
 
-  return state_copy;
+  return after_action(state_copy);
 }
 
 function on_create_note(state_copy, payload) {
@@ -56,7 +55,6 @@ function on_create_note(state_copy, payload) {
     ({ day_number }) => day_number === payload.day.day_number
   ).notes;
   notes.push(payload);
-
 
   return after_action(state_copy);
 }

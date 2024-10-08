@@ -13,6 +13,7 @@ import CreateNote from "./CreateNote";
 import { SidebarUtils } from "../context";
 
 import RenderNotes from "./RenderNotes";
+import classNames from "classnames";
 
 export default function Sidebar() {
   const { NAV_MONTH_LAST, NAV_MONTH_NEXT, CREATE_NOTE } = REDUCER_TYPES;
@@ -37,17 +38,13 @@ export default function Sidebar() {
   let notes_list = [];
 
   if (last_day_selected !== null) {
-
-    console.log({last_day_selected});
-    
+    console.log({ last_day_selected });
 
     notes_list = curr_month.days.find(
       ({ day_number }) => day_number === last_day_selected.day_number
     )?.notes;
 
-    console.log({notes_list});
-    
-
+    console.log({ notes_list });
   } else {
     notes_list = all_notes;
   }
@@ -68,13 +65,15 @@ export default function Sidebar() {
     last_day_selected.notes && set_is_creating_note(true);
   };
 
+  const main_classes = classNames(
+    "!w-sidebar h-screen custom_border px-4 relative max-md:fixed max-md:left-0 md:top-0 z-10 bg-white",
+    {
+      "hidden": !is_shown,
+    }
+  );
+
   return (
-    <div
-      className={`w-sidebar h-screen border-2 border-border px-4 relative ${
-        !is_shown &&
-        "animate transform -translate-x-[250px] duration-300 ease-in"
-      }`}
-    >
+    <div className={main_classes}>
       <div className="flex justify-between h-12 items-center">
         <div className="flex items-center w-3/4 justify-between">
           <span onClick={handle_arrow_left_click}>
