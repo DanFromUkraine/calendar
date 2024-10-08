@@ -38,13 +38,11 @@ export default function Sidebar() {
   let notes_list = [];
 
   if (last_day_selected !== null) {
-    console.log({ last_day_selected });
-
     notes_list = curr_month.days.find(
       ({ day_number }) => day_number === last_day_selected.day_number
     )?.notes;
 
-    console.log({ notes_list });
+    console.log("!!!!  ", { notes_list });
   } else {
     notes_list = all_notes;
   }
@@ -54,7 +52,7 @@ export default function Sidebar() {
     set_all_data({ type: CREATE_NOTE, payload: values });
     utils.resetForm();
 
-    console.log({ values, utils });
+    // console.log({ values, utils });
   };
 
   const handle_create_note_cancel = () => {
@@ -66,9 +64,9 @@ export default function Sidebar() {
   };
 
   const main_classes = classNames(
-    "!w-sidebar h-screen custom_border px-4 relative max-md:fixed max-md:left-0 md:top-0 z-10 bg-white",
+    "!w-sidebar h-screen custom_border px-4 relative max-md:fixed max-md:left-0 md:top-0 z-10 bg-white min-w-[250px]",
     {
-      "hidden": !is_shown,
+      hidden: !is_shown,
     }
   );
 

@@ -51,9 +51,11 @@ function curr_month_nav_right(state_copy) {
 }
 
 function on_create_note(state_copy, payload) {
+  console.log({payload});
+  
   const notes = state_copy.quick_access.curr_month.days.find(
     ({ day_number }) => day_number === payload.day.day_number
-  ).notes;
+  )?.notes;
   notes.push(payload);
 
   return after_action(state_copy);
@@ -95,7 +97,6 @@ function data_handler(state, action) {
 export default function DataProvider({ children }) {
   const [all_data, set_all_data] = useReducer(data_handler, init_data_obj());
 
-  console.log({ all_data });
 
   return (
     <Data.Provider value={{ all_data, set_all_data }}>{children}</Data.Provider>

@@ -2,15 +2,12 @@ import classNames from "classnames";
 import CheckIcon from "@mui/icons-material/Check";
 import { Data } from "../context";
 import { useContext } from "react";
-import { REDUCER_TYPES } from "../constants";
+// import { REDUCER_TYPES } from "../constants";
+import { handle_note_click } from "../utils";
 
-export default function Note(note) {
+export default function Note({ note }) {
   const { title, selected_color, date, is_done } = note;
   const { set_all_data } = useContext(Data);
-
-  
-
-  // console.log("note day", {day});
 
   const dot = classNames("w-2 h-2 rounded-full", `bg-${selected_color}-dot`);
   const span = classNames(`text-${selected_color}-text`, {
@@ -21,12 +18,11 @@ export default function Note(note) {
     { "line-through": is_done }
   );
 
-  const handle_click = () => {
-    set_all_data({ type: REDUCER_TYPES.CHANGE_NOTE_IS_DONE, payload: note });
-  };
+  const onClick = handle_note_click(set_all_data, note);
+
   return (
     <div className={cont}>
-      <span className="flex gap-0.5 items-center " onClick={handle_click}>
+      <span className="flex gap-0.5 items-center " onClick={onClick}>
         {is_done ? (
           <span className="">
             <CheckIcon style={{ width: "16px", height: "16px" }} />

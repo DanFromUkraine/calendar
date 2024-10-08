@@ -1,13 +1,9 @@
 import classNames from "classnames";
+import { Data } from "../context";
+import { useContext } from "react";
+import { handle_day_click } from "../utils";
 
-export default function Cell({
-  text_color,
-  is_selected,
-  children,
-  onClick,
-  day
-}) {
-  
+export default function Cell({ text_color, is_selected, children, day }) {
   const div_classes = classNames("w-8 h-8 flex justify-center items-center", {
       text_color: text_color,
     }),
@@ -15,8 +11,13 @@ export default function Cell({
       [`rounded-full ${is_selected && "bg-blue text-white p-1"}`]: is_selected,
     });
 
+  const { set_all_data } = useContext(Data);
+
+
+  const onClick = day ? handle_day_click(set_all_data, day) : null;
+
   return (
-    <div className={div_classes} onClick={onClick?.bind(null, day)}>
+    <div className={div_classes} onClick={onClick}>
       <div className={text_wrapper_classes}>{children}</div>
     </div>
   );

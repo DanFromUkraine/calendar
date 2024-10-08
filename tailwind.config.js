@@ -1,11 +1,14 @@
-import { NOTES_COLOR_NAMES } from './src/constants'
-const { green, red, yellow, green_v2, blue_v2, purple } = NOTES_COLOR_NAMES;
-
 /** @type {import('tailwindcss').Config} */
+
+// import { NOTES_COLOR_NAMES } from './src/constants'
+// const { green, red, yellow, green_v2, blue_v2, purple } = NOTES_COLOR_NAMES;
+
+// /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "src/**/*.jsx"
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
+
   theme: {
     extend: {
       screens: {
@@ -23,27 +26,27 @@ export default {
         blue: "#0C41FF",
         gray_v6: "#50616B",
 
-        [green]: {
+        ["green"]: {
           dot: "#2C5A41",
           text: "#8FDCB2"
         },
-        [red]: {
+        ["red"]: {
           dot: "#BE1A1A",
           text: "#BE1A1A"
         },
-        [yellow]: {
+        ["yellow"]: {
           dot: "#E7C160",
           text: "#684D08"
         },
-        [green_v2]: {
+        ["green_v2"]: {
           dot: "#55D28F",
           text: "#3BA86E"
         },
-        [blue_v2]: {
+        ["blue_v2"]: {
           dot: "#3849E0",
           text: "#2937B5"
         },
-        [purple]: {
+        ["purple"]: {
           dot: "#A384FF",
           text: "#341D76"
         }
@@ -69,5 +72,6 @@ export default {
     }
   ],
   plugins: [],
+
 }
 

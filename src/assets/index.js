@@ -14,3 +14,4 @@ import Sat from "./imgs/Party Popper.png";
 import Sun from "./imgs/Woman Getting Massage.png";
 
 export { SomeLogo, LoginPattern, GoogleIcon, Eye, ArrowRight, ClosedEye, Mon, Tue, Wed, Thur, Fri, Sat, Sun }
+
