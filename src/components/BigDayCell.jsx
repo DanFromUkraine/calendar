@@ -11,13 +11,13 @@ export default function BigDayCell(props) {
   const hidden_notes_countity = notes.slice(2).length;
 
   const cell_classes = classNames(
-    "p-1.5 w-full custom_border flex flex-col overflow-hidden",
+    "p-1.5 w-full custom_border flex flex-col",
     {
       "bg-light_gray": is_selected,
     }
   );
   const notes_classes = classNames(
-    "w-full flex flex-col items-end max-sm:h-36 sm:h-44"
+    "w-full flex flex-col items-end max-sm:h-36 sm:h-44 overflow-hidden justify-start"
   );
 
   const { set_all_data } = useContext(Data);

@@ -14,18 +14,20 @@ export default function Note({ note }) {
     "text-slate-600": is_done,
   });
   const cont = classNames(
-    "flex justify-between items-center text-md font-semibold z-10",
-    { "line-through": is_done },
+    "flex justify-between items-center text-xs font-semibold z-10",
+    { "line-through": is_done }
   );
 
   const onClick = handle_note_click(set_all_data, note);
 
-  console.log({is_disabled});
-  
+  console.log({ is_disabled });
 
   return (
     <div className={cont}>
-      <span className="flex gap-0.5 items-center " onClick={!is_disabled ? onClick : null}>
+      <span
+        className="flex gap-0.5 items-center "
+        onClick={!is_disabled ? onClick : null}
+      >
         {is_done ? (
           <span className="">
             <CheckIcon style={{ width: "16px", height: "16px" }} />
