@@ -62,7 +62,9 @@ function on_create_note(state_copy, payload) {
 }
 
 function on_change_note_is_done(state_copy, payload) {
-  const day = state_copy.quick_access.last_day_selected;
+    const day = state_copy.quick_access.last_day_selected;
+
+
   const note = day.notes.find(({ title }) => title === payload.title);
   note.is_done = !note.is_done;
 

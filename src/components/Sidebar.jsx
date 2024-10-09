@@ -5,9 +5,11 @@ import S_Calendar_table from "./S_Calendar_table";
 import { REDUCER_TYPES } from "../constants";
 
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+
+import NavLastMonth from "./NavLastMonth";
+import NavNextMonth from "./NavNextMonth";
 
 import CreateNote from "./CreateNote";
 import { SidebarUtils } from "../context";
@@ -16,7 +18,7 @@ import RenderNotes from "./RenderNotes";
 import classNames from "classnames";
 
 export default function Sidebar() {
-  const { NAV_MONTH_LAST, NAV_MONTH_NEXT, CREATE_NOTE } = REDUCER_TYPES;
+  const { CREATE_NOTE } = REDUCER_TYPES;
 
   const {
     all_data: {
@@ -27,13 +29,6 @@ export default function Sidebar() {
 
   const { is_shown, hide_sidebar } = useContext(SidebarUtils);
   const [is_creating_note, set_is_creating_note] = useState(false);
-
-  const handle_arrow_left_click = () => {
-    set_all_data({ type: NAV_MONTH_LAST });
-  };
-  const handle_arrow_right_click = () => {
-    set_all_data({ type: NAV_MONTH_NEXT });
-  };
 
   let notes_list = [];
 
@@ -51,8 +46,6 @@ export default function Sidebar() {
     set_is_creating_note(false);
     set_all_data({ type: CREATE_NOTE, payload: values });
     utils.resetForm();
-
-    // console.log({ values, utils });
   };
 
   const handle_create_note_cancel = () => {
@@ -64,7 +57,7 @@ export default function Sidebar() {
   };
 
   const main_classes = classNames(
-    "!w-sidebar h-screen custom_border px-4 relative max-md:fixed max-md:left-0 md:top-0 z-10 bg-white min-w-[250px]",
+    "!w-sidebar h-screen custom_border px-4 relative max-md:fixed max-md:left-0 md:top-0 bg-white min-w-[250px] bg-white",
     {
       hidden: !is_shown,
     }
@@ -74,13 +67,9 @@ export default function Sidebar() {
     <div className={main_classes}>
       <div className="flex justify-between h-12 items-center">
         <div className="flex items-center w-3/4 justify-between">
-          <span onClick={handle_arrow_left_click}>
-            <ArrowBackIosIcon fontSize="small" />
-          </span>
+          <NavLastMonth />
           <h2>{curr_month.name}</h2>
-          <span onClick={handle_arrow_right_click}>
-            <ArrowForwardIosIcon fontSize="small" />
-          </span>
+          <NavNextMonth />
         </div>
 
         <span onClick={() => hide_sidebar()}>

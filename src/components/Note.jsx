@@ -14,7 +14,7 @@ export default function Note({ note }) {
     "text-slate-600": is_done,
   });
   const cont = classNames(
-    "flex justify-between items-center text-md font-semibold",
+    "flex justify-between items-center text-md font-semibold z-10",
     { "line-through": is_done }
   );
 

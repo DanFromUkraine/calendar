@@ -2,19 +2,19 @@
 import { REDUCER_TYPES } from "../constants";
 
 function handle_day_click(set_all_data, day) {
-    if (typeof set_all_data === "function") {
-        return () => set_all_data({ type: REDUCER_TYPES.CHANGE_SEL, payload: day })
-    } else {
-        throw new Error("set_all_data is not a function", set_all_data);
-    }
+    return () => set_all_data({ type: REDUCER_TYPES.CHANGE_SEL, payload: day })
+
 }
 
 function handle_note_click(set_all_data, note) {
-    if (typeof set_all_data === "function") {
-        return () => set_all_data({ type: REDUCER_TYPES.CHANGE_NOTE_IS_DONE, payload: note })
-    } else {
-        throw new Error("set_all_data is not a function", set_all_data);
-    }
+    return () => set_all_data({ type: REDUCER_TYPES.CHANGE_NOTE_IS_DONE, payload: note })
 }
 
-export { handle_day_click, handle_note_click };
+function nav_last_month(set_all_data) {
+    return () => set_all_data({ type: REDUCER_TYPES.NAV_MONTH_LAST });
+}
+function nav_next_month(set_all_data) {
+    return () => set_all_data({ type: REDUCER_TYPES.NAV_MONTH_NEXT });
+}
+
+export { handle_day_click, handle_note_click, nav_last_month, nav_next_month };
