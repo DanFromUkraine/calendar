@@ -125,7 +125,7 @@ export default function CreateNote({ on_cancel, on_submit, initial_state, day_se
             <button type="submit" className="text-gray_v6 ">
               Submit
             </button>
-            <button className="text-rose-700" onClick={on_cancel}>
+            <button className="text-rose-700" onClick={on_cancel} type="button">
               Cancel
             </button>
           </div>

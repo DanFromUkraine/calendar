@@ -2,7 +2,7 @@ import classNames from "classnames";
 import CheckIcon from "@mui/icons-material/Check";
 import { Data } from "../context";
 import { useContext } from "react";
-// import { REDUCER_TYPES } from "../constants";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { handle_note_click } from "../utils";
 
 export default function Note({ note }) {
@@ -22,6 +22,15 @@ export default function Note({ note }) {
 
   console.log({ is_disabled });
 
+  const date_span_classes = classNames("group-hover:hidden text-mid_gray", {
+    "!flex": is_disabled,
+  });
+  const delete_icon_classes = classNames(
+    "hidden group-hover:flex",
+    { flex: date.length === 0 },
+    { "!hidden": is_disabled }
+  );
+
   return (
     <div className={cont}>
       <span
@@ -37,7 +46,13 @@ export default function Note({ note }) {
         )}
         <span className={span}>{title}</span>
       </span>
-      <span className="text-mid_gray">{date}</span>
+
+      <div className="group">
+        <span className={date_span_classes}>{date}</span>
+        <span className={delete_icon_classes}>
+          <DeleteIcon />
+        </span>
+      </div>
     </div>
   );
 }

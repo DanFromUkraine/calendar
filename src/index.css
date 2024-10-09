@@ -28,4 +28,6 @@
   .custom_border {
     @apply border-2 border-border;
   }
+
+  
 }

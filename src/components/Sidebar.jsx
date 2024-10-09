@@ -49,11 +49,6 @@ export default function Sidebar() {
     utils.resetForm();
   };
 
-  const on_create_note_click = () => {
-    last_day_selected.notes && create_note();
-  };
-
-  console.log({ is_shown });
 
   const main_classes = classNames(
     "!w-sidebar h-screen custom_border top-0 left-0 px-4 relative max-md:fixed min-w-[250px] bg-white sticky",
@@ -81,7 +76,7 @@ export default function Sidebar() {
       {is_creating_note ? (
         <CreateNote
           on_submit={handle_create_note_submit}
-          on_cancel={() => cancel_create_note}
+          on_cancel={cancel_create_note}
           day_selected={last_day_selected}
         />
       ) : (
