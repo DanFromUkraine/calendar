@@ -17,4 +17,45 @@ function nav_next_month(set_all_data) {
     return () => set_all_data({ type: REDUCER_TYPES.NAV_MONTH_NEXT });
 }
 
-export { handle_day_click, handle_note_click, nav_last_month, nav_next_month };
+// function handle_long_click(el, callback) {
+
+//     if (!el) {
+//         return;
+//     }
+
+//     let timer;
+//     const onClick = () => {
+//         timer = setTimeout(() => {
+//             callback();
+//         }, 200)
+//     }
+
+//     const onCancel = () => timer = null;
+//     removeEventListener("onmousedown", onClick);
+//     removeEventListener("onmouseout", onCancel);
+//     removeEventListener("onmouseup", onCancel)
+
+
+//     el.addEventListener("onmousedown", onClick)
+//     el.addEventListener("onmouseout", () => onCancel);
+//     el.addEventListener("onmouseup", () => onCancel);
+// }
+
+function handle_long_click(callback) {
+    
+    return ({target}) => {
+        let timer;
+
+        timer = setTimeout(() => callback(), 200);
+
+        const cancel = () => {
+            clearTimeout(timer);
+            timer = null;
+        };
+
+        target.addEventListener("mouseup", cancel);
+        target.addEventListener("mouseout", cancel);
+    }
+}
+
+export { handle_day_click, handle_note_click, nav_last_month, nav_next_month, handle_long_click };

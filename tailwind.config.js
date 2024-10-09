@@ -13,7 +13,8 @@ export default {
     extend: {
       screens: {
         md_l: "850px",
-        max: "1440px"
+        max: "1440px",
+        phone: "375px"
       },
       colors: {
         gray: "#E0E0E0",
@@ -57,7 +58,8 @@ export default {
       width: {
         sidebar: "250px",
         sidebar_vw: "17vw"
-      }
+      },
+
     },
   },
   safelist: [

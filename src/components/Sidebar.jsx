@@ -14,6 +14,7 @@ import { SidebarUtils } from "../context";
 
 import RenderNotes from "./RenderNotes";
 import classNames from "classnames";
+import AddEventWrapper from "./AddEventWrapper";
 
 export default function Sidebar() {
   const { CREATE_NOTE } = REDUCER_TYPES;
@@ -35,15 +36,10 @@ export default function Sidebar() {
 
   let notes_list = [];
 
-  // console.log("sidebar", {is_shown});
-  
-
   if (last_day_selected !== null) {
     notes_list = curr_month.days.find(
       ({ day_number }) => day_number === last_day_selected.day_number
     )?.notes;
-
-    // console.log("!!!!  ", { notes_list });
   } else {
     notes_list = all_notes;
   }
@@ -53,18 +49,16 @@ export default function Sidebar() {
     utils.resetForm();
   };
 
-
   const on_create_note_click = () => {
     last_day_selected.notes && create_note();
   };
 
-  console.log({is_shown});
-  
+  console.log({ is_shown });
 
   const main_classes = classNames(
     "!w-sidebar h-screen custom_border top-0 left-0 px-4 relative max-md:fixed min-w-[250px] bg-white sticky",
     {
-      "hidden": !is_shown,
+      hidden: !is_shown,
     }
   );
 
@@ -94,14 +88,9 @@ export default function Sidebar() {
         <>
           <RenderNotes notes_list={notes_list} />
 
-          <div
-            className={`absolute bottom-4 right-4 ${
-              !last_day_selected?.notes && "opacity-40"
-            }`}
-            onClick={on_create_note_click}
-          >
+          <AddEventWrapper className="absolute bottom-4 right-4">
             <AddCircleIcon />
-          </div>
+          </AddEventWrapper>
         </>
       )}
     </div>
