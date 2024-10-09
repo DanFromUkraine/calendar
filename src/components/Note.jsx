@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { handle_note_click } from "../utils";
 
 export default function Note({ note }) {
-  const { title, selected_color, date, is_done } = note;
+  const { title, selected_color, date, is_done, is_disabled } = note;
   const { set_all_data } = useContext(Data);
 
   const dot = classNames("w-2 h-2 rounded-full", `bg-${selected_color}-dot`);
@@ -15,14 +15,17 @@ export default function Note({ note }) {
   });
   const cont = classNames(
     "flex justify-between items-center text-md font-semibold z-10",
-    { "line-through": is_done }
+    { "line-through": is_done },
   );
 
   const onClick = handle_note_click(set_all_data, note);
 
+  console.log({is_disabled});
+  
+
   return (
     <div className={cont}>
-      <span className="flex gap-0.5 items-center " onClick={onClick}>
+      <span className="flex gap-0.5 items-center " onClick={!is_disabled ? onClick : null}>
         {is_done ? (
           <span className="">
             <CheckIcon style={{ width: "16px", height: "16px" }} />

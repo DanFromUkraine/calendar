@@ -57,7 +57,7 @@ export default function Sidebar() {
   };
 
   const main_classes = classNames(
-    "!w-sidebar h-screen custom_border px-4 relative max-md:fixed max-md:left-0 md:top-0 bg-white min-w-[250px] bg-white",
+    "!w-sidebar h-screen custom_border px-4 relative max-md:fixed max-md:left-0 md:top-0 bg-white min-w-[250px] bg-white sticky",
     {
       hidden: !is_shown,
     }

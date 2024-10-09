@@ -10,21 +10,26 @@ export default function BigDayCell(props) {
   const notes_to_show = notes.slice(0, 2);
   const hidden_notes_countity = notes.slice(2).length;
 
-  const cell_classes = classNames("p-1.5 w-full custom_border flex flex-col", {
-    "bg-light_gray": is_selected,
-  });
-  const notes_classes = classNames("w-full flex flex-col items-end max-sm:h-36 sm:h-44")
+  const cell_classes = classNames(
+    "p-1.5 w-full custom_border flex flex-col overflow-hidden",
+    {
+      "bg-light_gray": is_selected,
+    }
+  );
+  const notes_classes = classNames(
+    "w-full flex flex-col items-end max-sm:h-36 sm:h-44"
+  );
 
-  const {set_all_data} = useContext(Data);
+  const { set_all_data } = useContext(Data);
 
-  const onClick = handle_day_click(set_all_data, day_number)
+  const onClick = handle_day_click(set_all_data, day_number);
 
   return (
     <div className={cell_classes} onClick={onClick}>
       <span>{day_number}</span>
 
       <div className={notes_classes}>
-        <RenderNotes notes_list={notes_to_show} />
+        <RenderNotes notes_list={notes_to_show} is_disabled/>
         {hidden_notes_countity > 0 && (
           <span>{`+ ${hidden_notes_countity} More`}</span>
         )}
