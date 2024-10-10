@@ -15,7 +15,7 @@ export default function BigDayCell(props) {
     "bg-light_gray": is_selected,
   });
   const notes_classes = classNames(
-    "w-full flex flex-col items-end max-sm:h-36 sm:h-44 overflow-hidden justify-start"
+    "!w-full flex flex-col items-start max-sm:h-36 sm:h-44 overflow-hidden justify-end"
   );
 
   const { set_all_data } = useContext(Data);

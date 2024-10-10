@@ -3,15 +3,12 @@ import { SidebarUtils } from ".";
 import { get_sidebar_is_shown, set_sidebar_is_shown } from "../utils/ls";
 
 export default function ShowSidebarProvider({ children }) {
-
-
   console.log(get_sidebar_is_shown());
-  
 
   const [is_shown, set_is_shown] = useState(get_sidebar_is_shown());
 
-  console.log({is_shown});
-  
+  console.log({ is_shown });
+
   const [is_creating_note, set_is_creating_note] = useState(false);
 
   set_sidebar_is_shown(is_shown);

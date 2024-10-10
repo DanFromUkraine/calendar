@@ -17,29 +17,7 @@ function nav_next_month(set_all_data) {
     return () => set_all_data({ type: REDUCER_TYPES.NAV_MONTH_NEXT });
 }
 
-// function handle_long_click(el, callback) {
 
-//     if (!el) {
-//         return;
-//     }
-
-//     let timer;
-//     const onClick = () => {
-//         timer = setTimeout(() => {
-//             callback();
-//         }, 200)
-//     }
-
-//     const onCancel = () => timer = null;
-//     removeEventListener("onmousedown", onClick);
-//     removeEventListener("onmouseout", onCancel);
-//     removeEventListener("onmouseup", onCancel)
-
-
-//     el.addEventListener("onmousedown", onClick)
-//     el.addEventListener("onmouseout", () => onCancel);
-//     el.addEventListener("onmouseup", () => onCancel);
-// }
 
 function handle_long_click(callback) {
     
