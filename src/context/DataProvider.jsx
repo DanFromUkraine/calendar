@@ -63,7 +63,6 @@ function on_create_note(state_copy, payload) {
 
 function on_change_note_is_done(state_copy, payload) {
   const day = state_copy.quick_access.last_day_selected;
-
   const note = day.notes.find(({ title }) => title === payload.title);
   note.is_done = !note.is_done;
 
@@ -72,12 +71,18 @@ function on_change_note_is_done(state_copy, payload) {
 
 function on_delete_note(state_copy, payload) {
   let day = state_copy.quick_access.last_day_selected;
-
-  // console.log({day});
-
   day.notes = day.notes.filter(({ id }) => id !== payload);
 
-  // state_copy.quick_access.last_day_selected.notes = result;
+  return after_action(state_copy);
+}
+
+function on_edit_note(state_copy, payload) {
+  let day = state_copy.quick_access.last_day_selected;
+  const newNotes = day.notes.map((note) =>
+    note.id === payload.id ? payload : note
+  );
+
+  day.notes = newNotes;
 
   return after_action(state_copy);
 }
@@ -90,6 +95,7 @@ function data_handler(state, action) {
     CREATE_NOTE,
     CHANGE_NOTE_IS_DONE,
     DELETE_NOTE,
+    EDIT_NOTE,
   } = REDUCER_TYPES;
   const { type, payload } = action;
   const state_copy = structuredClone(state);
@@ -107,6 +113,8 @@ function data_handler(state, action) {
       return on_change_note_is_done(state_copy, payload);
     case DELETE_NOTE:
       return on_delete_note(state_copy, payload);
+    case EDIT_NOTE:
+      return on_edit_note(state_copy, payload);
   }
 }
 

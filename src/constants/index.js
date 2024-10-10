@@ -13,7 +13,8 @@ export const REDUCER_TYPES = {
     CREATE_NOTE: "create_note",
     CHANGE_NOTE_IS_DONE: "",
     CLEAR_LAST_DAY_SELECTED: "clear last day selected",
-    DELETE_NOTE: "delete note by title"
+    DELETE_NOTE: "delete note by title",
+    EDIT_NOTE: "change note properties"
 }
 
 export const day_names = ["m", "t", "w", "t", "f", "s", "s"];

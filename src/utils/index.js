@@ -17,9 +17,10 @@ function nav_next_month(set_all_data) {
     return () => set_all_data({ type: REDUCER_TYPES.NAV_MONTH_NEXT });
 }
 function delete_note(set_all_data, note_title) {
-    console.log("delete note");
-    
     return () => set_all_data({ type: REDUCER_TYPES.DELETE_NOTE, payload: note_title });
+}
+function edit_note(set_all_data, note) {
+    return () => set_all_data({ type: REDUCER_TYPES.EDIT_NOTE, payload: note })
 }
 
 
@@ -41,4 +42,4 @@ function handle_long_click(callback) {
     }
 }
 
-export { handle_day_click, handle_note_click, nav_last_month, nav_next_month, handle_long_click, delete_note };
+export { handle_day_click, handle_note_click, nav_last_month, nav_next_month, handle_long_click, delete_note, edit_note };

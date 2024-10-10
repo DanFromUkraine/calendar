@@ -26,8 +26,14 @@ export default function Sidebar() {
     set_all_data,
   } = useContext(Data);
 
-  const { is_shown, hide_sidebar, cancel_create_note, is_creating_note } =
-    useContext(SidebarUtils);
+  const {
+    is_shown,
+    hide_sidebar,
+    cancel_create_note,
+    is_creating_note,
+    change_note_info,
+    clear_change_note_info,
+  } = useContext(SidebarUtils);
 
   let notes_list = [];
 
@@ -40,7 +46,14 @@ export default function Sidebar() {
   }
 
   const handle_create_note_submit = (values, utils) => {
-    set_all_data({ type: CREATE_NOTE, payload: values });
+    
+    if (change_note_info) {
+      set_all_data({ type: REDUCER_TYPES.EDIT_NOTE, payload: values });
+      clear_change_note_info();
+    } else {
+      set_all_data({ type: REDUCER_TYPES.CREATE_NOTE, payload: values });
+    }
+
     cancel_create_note();
     utils.resetForm();
   };
@@ -73,6 +86,7 @@ export default function Sidebar() {
           on_submit={handle_create_note_submit}
           on_cancel={cancel_create_note}
           day_selected={last_day_selected}
+          initial_state={change_note_info}
         />
       ) : (
         <>

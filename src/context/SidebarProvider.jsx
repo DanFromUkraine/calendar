@@ -6,15 +6,13 @@ export default function ShowSidebarProvider({ children }) {
   console.log(get_sidebar_is_shown());
 
   const [is_shown, set_is_shown] = useState(get_sidebar_is_shown());
-
-  console.log({ is_shown });
-
   const [is_creating_note, set_is_creating_note] = useState(false);
-
+  const [change_note_info, set_change_note_info] = useState(false);
   set_sidebar_is_shown(is_shown);
 
   const show_sidebar = () => set_is_shown(true);
   const hide_sidebar = () => set_is_shown(false);
+  const clear_change_note_info = () => set_change_note_info(false);
 
   const create_note = () => {
     show_sidebar();
@@ -32,6 +30,9 @@ export default function ShowSidebarProvider({ children }) {
         create_note,
         cancel_create_note,
         is_creating_note,
+        change_note_info,
+        set_change_note_info,
+        clear_change_note_info,
       }}
     >
       {children}
