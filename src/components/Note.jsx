@@ -6,7 +6,7 @@ import { handle_note_click } from "../utils";
 import DateDeleteAndEdit from "./DateDeleteAndEdit";
 
 export default function Note({ note }) {
-  const { title, selected_color, date, is_done, is_disabled } = note;
+  const { title, selected_color, is_done, is_disabled } = note;
   const { set_all_data } = useContext(Data);
 
   const dot = classNames("w-2 h-2 rounded-full", `bg-${selected_color}-dot`);
@@ -36,7 +36,7 @@ export default function Note({ note }) {
         <span className={span}>{title}</span>
       </span>
 
-      <DateDeleteAndEdit date={date} is_disabled={is_disabled} />
+      <DateDeleteAndEdit note={note}/>
     </div>
   );
 }

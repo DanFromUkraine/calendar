@@ -12,7 +12,8 @@ export const REDUCER_TYPES = {
     NAV_MONTH_NEXT: "navigate_to_next_month",
     CREATE_NOTE: "create_note",
     CHANGE_NOTE_IS_DONE: "",
-    CLEAR_LAST_DAY_SELECTED: "clear last day selected"
+    CLEAR_LAST_DAY_SELECTED: "clear last day selected",
+    DELETE_NOTE: "delete note by title"
 }
 
 export const day_names = ["m", "t", "w", "t", "f", "s", "s"];

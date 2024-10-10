@@ -11,7 +11,14 @@ import Formik_date_input from "./Formik_date_input";
 import { CREATE_NOTE_SCHEMA } from "../constants";
 import ErrorWrapper from "./ErrorWrapper";
 
-export default function CreateNote({ on_cancel, on_submit, initial_state, day_selected }) {
+import { v4 } from "uuid";
+
+export default function CreateNote({
+  on_cancel,
+  on_submit,
+  initial_state,
+  day_selected,
+}) {
   const [selected_color, set_selected_color] = useState(
     NOTES_COLOR_NAMES.green
   );
@@ -36,7 +43,7 @@ export default function CreateNote({ on_cancel, on_submit, initial_state, day_se
   const colors_list_classes = classNames(
     "grid-cols-2 gap-1",
     { "hidden ": !opened },
-    { "grid": opened }
+    { grid: opened }
   );
 
   return (
@@ -48,7 +55,8 @@ export default function CreateNote({ on_cancel, on_submit, initial_state, day_se
           date: "",
           selected_color: selected_color,
           is_done: false,
-          day: day_selected
+          day: day_selected,
+          id: v4(),
         }
       }
       validationSchema={CREATE_NOTE_SCHEMA}
@@ -134,3 +142,4 @@ export default function CreateNote({ on_cancel, on_submit, initial_state, day_se
     </Formik>
   );
 }
+

@@ -26,13 +26,8 @@ export default function Sidebar() {
     set_all_data,
   } = useContext(Data);
 
-  const {
-    is_shown,
-    hide_sidebar,
-    create_note,
-    cancel_create_note,
-    is_creating_note,
-  } = useContext(SidebarUtils);
+  const { is_shown, hide_sidebar, cancel_create_note, is_creating_note } =
+    useContext(SidebarUtils);
 
   let notes_list = [];
 
@@ -46,9 +41,9 @@ export default function Sidebar() {
 
   const handle_create_note_submit = (values, utils) => {
     set_all_data({ type: CREATE_NOTE, payload: values });
+    cancel_create_note();
     utils.resetForm();
   };
-
 
   const main_classes = classNames(
     "!w-sidebar h-screen custom_border top-0 left-0 px-4 relative max-md:fixed min-w-[250px] bg-white sticky",
