@@ -3,6 +3,7 @@ import { init_data_obj } from "../date";
 import { useReducer } from "react";
 import { REDUCER_TYPES } from "../constants";
 import { write_data_in_ls } from "../utils/ls";
+import { format } from "date-fns";
 
 function on_change_selected(state_copy, payload) {
   const q_access = state_copy.quick_access;
@@ -10,15 +11,17 @@ function on_change_selected(state_copy, payload) {
     ({ day_number }) => day_number === payload
   );
 
-  if (q_access.last_day_selected === day) {
-    q_access.last_day_selected.is_selected = false;
-    q_access.last_day_selected = null;
-  } else {
-    if (q_access.last_day_selected) {
+  if (day) {
+    if (q_access.last_day_selected === day) {
       q_access.last_day_selected.is_selected = false;
+      q_access.last_day_selected = null;
+    } else {
+      if (q_access.last_day_selected) {
+        q_access.last_day_selected.is_selected = false;
+      }
+      day.is_selected = true;
+      q_access.last_day_selected = day;
     }
-    day.is_selected = true;
-    q_access.last_day_selected = day;
   }
 
   return after_action(state_copy);
@@ -87,6 +90,25 @@ function on_edit_note(state_copy, payload) {
   return after_action(state_copy);
 }
 
+function on_go_to_curr_date(state_copy) {
+  const now = new Date();
+  const month = format(now, "MMMM");
+  const day = format(now, "dd");
+  const quick_access = state_copy.quick_access;
+
+  const last_day = quick_access.last_day_selected;
+  const month_data = state_copy.all.find(({ name }) => name === month);
+  const day_data = month_data.days.find(({ day_number }) => day_number == day);
+
+  last_day.is_selected = false;
+  day_data.is_selected = true;
+  quick_access.last_day_selected = day_data;
+  quick_access.curr_month = month_data;
+
+
+  return after_action(state_copy);
+}
+
 function data_handler(state, action) {
   const {
     CHANGE_SEL,
@@ -96,9 +118,12 @@ function data_handler(state, action) {
     CHANGE_NOTE_IS_DONE,
     DELETE_NOTE,
     EDIT_NOTE,
+    GO_TO_CURR_DATE,
   } = REDUCER_TYPES;
   const { type, payload } = action;
   const state_copy = structuredClone(state);
+
+  // console.log("something");
 
   switch (type) {
     case CHANGE_SEL:
@@ -115,6 +140,10 @@ function data_handler(state, action) {
       return on_delete_note(state_copy, payload);
     case EDIT_NOTE:
       return on_edit_note(state_copy, payload);
+    case GO_TO_CURR_DATE:
+      return on_go_to_curr_date(state_copy);
+    default:
+      return state_copy;
   }
 }
 

@@ -14,7 +14,7 @@ export default function Formik_date_input({
     const M = Number(target.value[3]);
     const m = Number(target.value[4]);
 
-    target.setSelectionRange(0, 0);
+    // target.setSelectionRange(0, 0);
 
     if (H > 2) {
       target.value = "2";

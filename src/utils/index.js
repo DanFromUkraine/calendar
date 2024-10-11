@@ -22,6 +22,11 @@ function delete_note(set_all_data, note_title) {
 function edit_note(set_all_data, note) {
     return () => set_all_data({ type: REDUCER_TYPES.EDIT_NOTE, payload: note })
 }
+function switch_to_curr_date(set_all_data) {
+    // console.log("click");
+    
+    return () => set_all_data({ type: REDUCER_TYPES.GO_TO_CURR_DATE })
+}
 
 
 
@@ -42,4 +47,4 @@ function handle_long_click(callback) {
     }
 }
 
-export { handle_day_click, handle_note_click, nav_last_month, nav_next_month, handle_long_click, delete_note, edit_note };
+export { handle_day_click, handle_note_click, nav_last_month, nav_next_month, handle_long_click, delete_note, edit_note, switch_to_curr_date };

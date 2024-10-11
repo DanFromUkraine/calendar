@@ -1,7 +1,6 @@
 import GenFormInput from "./GenFormInput"
 
 export default function SignUpForm({setHasAccount}) {
-  console.log("Sign UP");
 
   return (
     <>

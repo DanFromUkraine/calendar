@@ -14,7 +14,8 @@ export const REDUCER_TYPES = {
     CHANGE_NOTE_IS_DONE: "",
     CLEAR_LAST_DAY_SELECTED: "clear last day selected",
     DELETE_NOTE: "delete note by title",
-    EDIT_NOTE: "change note properties"
+    EDIT_NOTE: "change note properties",
+    GO_TO_CURR_DATE: "switch/ go to current date"
 }
 
 export const day_names = ["m", "t", "w", "t", "f", "s", "s"];

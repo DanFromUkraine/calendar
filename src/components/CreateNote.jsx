@@ -19,41 +19,14 @@ export default function CreateNote({
   initial_state,
   day_selected,
 }) {
-  const [selected_color, set_selected_color] = useState(
-    NOTES_COLOR_NAMES.green
-  );
-  const [opened, set_opened] = useState(false);
-
-  const handle_textarea_size = (e) => {
-    e.target.style.height = "auto";
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  };
-
-  const handle_edit_click = () => {
-    set_opened((prev) => !prev);
-  };
-
-  const handle_color_click = (color) => {
-    set_selected_color(color);
-    set_opened(false);
-  };
-
   const [date_inp_completed, set_date_inp_completed] = useState(false);
-
-  const colors_list_classes = classNames(
-    "grid-cols-2 gap-1",
-    { "hidden ": !opened },
-    { grid: opened }
-  );
 
   return (
     <Formik
       initialValues={
         initial_state || {
           title: "",
-          description: "",
           date: "",
-          selected_color: selected_color,
           is_done: false,
           day: day_selected,
           id: v4(),
@@ -78,45 +51,7 @@ export default function CreateNote({
               </ErrorWrapper>
             </span>
           </div>
-          <div className="w-full">
-            {/* <textarea></textarea> */}
 
-            <Field
-              type="text"
-              name="description"
-              placeholder="Description (optional)"
-              onInput={handle_textarea_size}
-              className="focus:outline-none w-full resize-none overflow-hidden "
-              as="textarea"
-            />
-          </div>
-
-          <div className="flex items-start gap-4">
-            <div className="flex gap-1">
-              <span>Color:</span>
-              <span className="flex items-center">
-                <Color_option color={selected_color + "-dot"} />
-              </span>
-            </div>
-
-            <span onClick={handle_edit_click}>
-              <CreateIcon />
-            </span>
-
-            <div className={colors_list_classes}>
-              {Object.entries(NOTES_COLOR_NAMES).map(
-                // eslint-disable-next-line no-unused-vars
-                ([classkey, classval], i) => (
-                  <Color_option
-                    key={i}
-                    color={`${classval}-dot`}
-                    clear_color={classval}
-                    onClick={handle_color_click}
-                  />
-                )
-              )}
-            </div>
-          </div>
           <div className="w-full flex items-center gap-4">
             <span>{"Date (optional):"}</span>
             <div className="">
@@ -142,4 +77,3 @@ export default function CreateNote({
     </Formik>
   );
 }
-

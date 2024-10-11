@@ -1,23 +1,31 @@
+import { format } from "date-fns";
 import { useContext } from "react";
 import { Data } from "../context";
-import {format} from "date-fns";
+import { switch_to_curr_date } from "../utils";
 
 export default function CurrentDate() {
-  const { quick_access } = useContext(Data).all_data;
+  const { set_all_data } = useContext(Data);
 
-  const day = format(quick_access.curr_month.date, "dd");
-  const month = quick_access.curr_month.name;
-  const year = format(quick_access.curr_month.date, "y");
+  const now = new Date();
 
-  const short_date = format(quick_access.curr_month.date, "P");
+  const day = format(now, "dd");
+  const month = format(now, "MMMM");
+  const year = format(now, "y");
+
+  const short_date = format(now, "P");
+
+  const on_click = switch_to_curr_date(set_all_data);
+
   return (
     <>
-      <div className="max-md:hidden flex gap-2 text-3xl">
+      <div className="max-md:hidden flex gap-2 text-3xl" onClick={on_click}>
+        <span>today:</span>
         <span className="font-medium">{day}</span>
         <span className="font-medium">{month}</span>
         <span>{year}</span>
       </div>
-      <span className="md:hidden text-lg font-semibold flex items-center">
+      <span className="md:hidden text-lg font-semibold flex items-center" onClick={on_click}>
+        td:
         {short_date}
       </span>
     </>
