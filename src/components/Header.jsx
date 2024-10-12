@@ -1,8 +1,7 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useContext } from "react";
-import { Data, SidebarUtils } from "../context";
-import { format } from "date-fns";
+
 
 import NavLastMonth from "./NavLastMonth";
 import NavNextMonth from "./NavNextMonth";
@@ -10,9 +9,7 @@ import CurrentDate from "./CurrentDate";
 import AddEventWrapper from "./AddEventWrapper";
 
 export default function Header() {
-  // const {
-  //   all_data: { quick_access },
-  // } = useContext(Data);
+  
   const { show_sidebar, is_shown } = useContext(SidebarUtils);
 
   return (

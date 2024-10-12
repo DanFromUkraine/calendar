@@ -22,7 +22,7 @@ provider.addScope('https://www.googleapis.com/auth/userinfo.email');
 const auth = getAuth();
 auth.useDeviceLanguage();
 
-export function redirect_login() {
+export function redirect_login(on_success) {
     signInWithRedirect(auth, provider);
 
     getRedirectResult(auth)
@@ -34,7 +34,7 @@ export function redirect_login() {
             // The signed-in user info.
             const user = result.user;
 
-
+            on_success();
 
             // IdP data available using getAdditionalUserInfo(result)
             // ...

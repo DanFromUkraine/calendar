@@ -1,25 +1,32 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { GoogleIcon, Eye, ClosedEye, ArrowRight } from "../assets";
 import { redirect_login } from "../firebase";
 import { USER_SCHEMA } from "../constants/index";
 import ErrorWrapper from "./ErrorWrapper";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Logined } from "../context";
 
 const initial_values = {
   email: "",
   password: "",
-}
+};
 
 export default function GenFormInput({ onSubmit }) {
   const [is_shown, set_is_shown] = useState(false);
   const handle_is_shown = () => set_is_shown((prev) => !prev);
 
+  const { login } = useContext(Logined);
+
   const on_submit = (values, utils) => {
     onSubmit(values);
     utils.resetForm();
   };
-  
+
+  const google_login_click = () => {
+    redirect_login(() => login());
+  };
+
   return (
     <Formik
       initialValues={initial_values}
@@ -30,7 +37,8 @@ export default function GenFormInput({ onSubmit }) {
         <Form className="flex flex-col gap-y-4">
           <button
             className="flex justify-center gap-4 bg-light_blue rounded-[48px] w-full p-4"
-            onClick={redirect_login}
+            onClick={google_login_click}
+            type="button"
           >
             <img src={GoogleIcon} alt="" />
             <span> Sign with Google</span>

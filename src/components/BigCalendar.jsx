@@ -5,7 +5,7 @@ import BigDayCell from "./BigDayCell";
 
 export default function BigCalendar() {
   const {
-    quick_access: { curr_month, days_to_show },
+    quick_access: {  days_to_show },
   } = useContext(Data).all_data;
 
   

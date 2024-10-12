@@ -3,7 +3,6 @@ import { SidebarUtils } from ".";
 import { get_sidebar_is_shown, set_sidebar_is_shown } from "../utils/ls";
 
 export default function ShowSidebarProvider({ children }) {
-
   const [is_shown, set_is_shown] = useState(get_sidebar_is_shown());
   const [is_creating_note, set_is_creating_note] = useState(false);
   const [change_note_info, set_change_note_info] = useState(false);
