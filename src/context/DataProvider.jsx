@@ -120,9 +120,14 @@ function on_set_days_to_show(state_copy) {
   const day_of_week = quick_access.curr_month.days[0].day_of_week - 1;
 
   const last_month = state_copy.all[quick_access.curr_month.arr_ind - 1];
-  const days_of_last_month = last_month.days
-    .slice(-day_of_week)
-    .map((day) => ({ ...day, is_disabled: true }));
+  const days_of_last_month =
+    day_of_week != "0"
+      ? last_month.days
+          .slice(-day_of_week)
+          .map((day) => ({ ...day, is_disabled: true }))
+      : [];
+
+  console.log({ day_of_week });
 
   const next_month = state_copy.all[quick_access.curr_month.arr_ind + 1];
 
@@ -130,12 +135,13 @@ function on_set_days_to_show(state_copy) {
     days_to_show.unshift(...days_of_last_month);
   }
   const days_of_next_month = next_month.days
-    .slice(0, 34 - days_to_show.length)
+    .slice(0, 42 - days_to_show.length)
     .map((day) => ({ ...day, is_disabled: true }));
+  console.log(days_to_show.length);
+
   days_to_show.push(...days_of_next_month);
 
-  console.log({days_of_next_month})
-  console.log(days_to_show.length)
+  console.log({ days_of_next_month });
 
   quick_access.days_to_show = days_to_show;
 
