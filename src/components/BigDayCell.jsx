@@ -31,7 +31,7 @@ export default function BigDayCell(props) {
   };
 
   return (
-    <div className={cell_classes} onMouseDown={!is_disabled && onMouseDown}>
+    <div className={cell_classes} onMouseDown={!is_disabled ? onMouseDown : null}>
       <span>{day_number}</span>
 
       <div className={notes_classes}>

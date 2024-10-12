@@ -1,30 +1,24 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { GoogleIcon, Eye, ClosedEye, ArrowRight } from "../assets";
-import { redirect_login } from "../firebase";
+import {} from "../firebase";
 import { USER_SCHEMA } from "../constants/index";
 import ErrorWrapper from "./ErrorWrapper";
+// import { error_str } from "../firebase";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Logined } from "../context";
 
 const initial_values = {
   email: "",
   password: "",
 };
 
-export default function GenFormInput({ onSubmit }) {
+export default function GenFormInput({ onSubmit, error_str }) {
   const [is_shown, set_is_shown] = useState(false);
   const handle_is_shown = () => set_is_shown((prev) => !prev);
-
-  const { login } = useContext(Logined);
 
   const on_submit = (values, utils) => {
     onSubmit(values);
     utils.resetForm();
-  };
-
-  const google_login_click = () => {
-    redirect_login(() => login());
   };
 
   return (
@@ -36,8 +30,8 @@ export default function GenFormInput({ onSubmit }) {
       {() => (
         <Form className="flex flex-col gap-y-4">
           <button
-            className="flex justify-center gap-4 bg-light_blue rounded-[48px] w-full p-4"
-            onClick={google_login_click}
+            className="flex justify-center gap-4 bg-light_blue rounded-[48px] w-full p-4 opacity-40"
+            // onClick={google_login_click}
             type="button"
           >
             <img src={GoogleIcon} alt="" />
@@ -90,6 +84,7 @@ export default function GenFormInput({ onSubmit }) {
               <img src={ArrowRight} alt="" />
             </span>
           </button>
+          <ErrorWrapper>{error_str}</ErrorWrapper>
         </Form>
       )}
     </Formik>

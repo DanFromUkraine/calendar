@@ -2,14 +2,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useContext } from "react";
 
-
 import NavLastMonth from "./NavLastMonth";
 import NavNextMonth from "./NavNextMonth";
 import CurrentDate from "./CurrentDate";
 import AddEventWrapper from "./AddEventWrapper";
 
+import { SidebarUtils } from "../context";
+
 export default function Header() {
-  
   const { show_sidebar, is_shown } = useContext(SidebarUtils);
 
   return (
