@@ -9,6 +9,8 @@ export default function S_Calendar_table() {
 
   // const start_at = curr_month.days[0].day_of_week - 1;
 
+  console.log({days_to_show})
+
   return (
     <div className="grid grid-cols-7">
       {day_names.map((day, i) => (
@@ -20,9 +22,9 @@ export default function S_Calendar_table() {
         <div className={`grid grid-cols-subgrid col-span-${start_at}`}></div>
       )} */}
       {Array.isArray(days_to_show) &&
-        days_to_show.map(({ day_number, is_selected }, i) => {
+        days_to_show.map(({ day_number, is_selected, is_disabled }, i) => {
           return (
-            <Cell key={i} day={day_number} is_selected={is_selected}>
+            <Cell key={i} day={day_number} is_selected={is_selected} is_disabled={is_disabled}>
               {day_number}
             </Cell>
           );

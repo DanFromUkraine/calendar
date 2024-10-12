@@ -93,11 +93,6 @@ export function init_data_obj() {
             all_notes: [],
         };
 
-        // quick_access.days_to_show = get_days_to_show(data, quick_access);
-
-
-        // console.log("days to show ", quick_access.days_to_show)
-
         data.quick_access = quick_access;
     }
 
