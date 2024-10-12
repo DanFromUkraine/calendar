@@ -96,7 +96,7 @@ export default function Sidebar() {
         <>
           <RenderNotes notes_list={notes_list} />
 
-          <div className="relative flex justify-between -bottom-96 p-4 w-full">
+          <div className="absolute bottom-5 flex justify-between w-56">
             <span onClick={() => logout()}>
               <LogoutIcon />
             </span>

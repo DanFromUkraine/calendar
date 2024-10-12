@@ -12,8 +12,12 @@ export default function BigDayCell(props) {
   const hidden_notes_countity = notes.slice(2).length;
 
   const cell_classes = classNames("p-1.5 w-full custom_border flex flex-col", {
-    "bg-light_gray": is_selected,
-  });
+    "bg-border": is_selected,
+  },
+  {
+    "bg-light_gray": is_disabled
+  }
+);
   const notes_classes = classNames(
     "!w-full flex flex-col items-start max-sm:h-36 sm:h-44 overflow-hidden justify-end"
   );
@@ -27,7 +31,7 @@ export default function BigDayCell(props) {
   };
 
   return (
-    <div className={cell_classes} onMouseDown={onMouseDown}>
+    <div className={cell_classes} onMouseDown={!is_disabled && onMouseDown}>
       <span>{day_number}</span>
 
       <div className={notes_classes}>
