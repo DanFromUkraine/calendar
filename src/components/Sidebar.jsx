@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { Data } from "../context";
 import S_Calendar_table from "./S_Calendar_table";
@@ -17,14 +17,19 @@ import classNames from "classnames";
 import AddEventWrapper from "./AddEventWrapper";
 
 export default function Sidebar() {
-  const { CREATE_NOTE } = REDUCER_TYPES;
-
   const {
     all_data: {
-      quick_access: { curr_month, all_notes, last_day_selected },
+      quick_access: { curr_month, all_notes, last_day_selected, days_to_show },
     },
     set_all_data,
   } = useContext(Data);
+
+  useEffect(() => {
+    set_all_data({ type: REDUCER_TYPES.INIT_DAYS_TO_SHOW });
+  }, []);
+
+  console.log({ days_to_show });
+
 
   const {
     is_shown,
@@ -46,7 +51,6 @@ export default function Sidebar() {
   }
 
   const handle_create_note_submit = (values, utils) => {
-    
     if (change_note_info) {
       set_all_data({ type: REDUCER_TYPES.EDIT_NOTE, payload: values });
       clear_change_note_info();

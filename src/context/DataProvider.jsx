@@ -100,11 +100,37 @@ function on_go_to_curr_date(state_copy) {
   const month_data = state_copy.all.find(({ name }) => name === month);
   const day_data = month_data.days.find(({ day_number }) => day_number == day);
 
-  last_day.is_selected = false;
+  if (last_day) {
+    last_day.is_selected = false;
+  }
+
   day_data.is_selected = true;
   quick_access.last_day_selected = day_data;
   quick_access.curr_month = month_data;
 
+  console.log(state_copy.quick_access.days_to_show);
+
+  return after_action(state_copy);
+}
+
+function on_set_days_to_show(state_copy) {
+  const quick_access = state_copy.quick_access;
+
+  const days_to_show = [...quick_access.curr_month.days];
+  const day_of_week = quick_access.curr_month.days[0].day_of_week - 1;
+
+  const last_month = state_copy.all[quick_access.curr_month.arr_ind - 1];
+  const days_of_last_month = last_month.days.slice(-day_of_week);
+
+  const next_month = state_copy.all[quick_access.curr_month.arr_ind + 1];
+
+  if (day_of_week !== "0") {
+    days_to_show.unshift(...days_of_last_month);
+  }
+  const days_of_next_month = next_month.days.slice(0, 35 - days_to_show.length);
+  days_to_show.push(...days_of_next_month);
+
+  quick_access.days_to_show = days_to_show;
 
   return after_action(state_copy);
 }
@@ -119,19 +145,18 @@ function data_handler(state, action) {
     DELETE_NOTE,
     EDIT_NOTE,
     GO_TO_CURR_DATE,
+    INIT_DAYS_TO_SHOW,
   } = REDUCER_TYPES;
   const { type, payload } = action;
   const state_copy = structuredClone(state);
-
-  // console.log("something");
 
   switch (type) {
     case CHANGE_SEL:
       return on_change_selected(state_copy, payload);
     case NAV_MONTH_LAST:
-      return curr_month_nav_left(state_copy);
+      return on_set_days_to_show(curr_month_nav_left(state_copy));
     case NAV_MONTH_NEXT:
-      return curr_month_nav_right(state_copy);
+      return on_set_days_to_show(curr_month_nav_right(state_copy));
     case CREATE_NOTE:
       return on_create_note(state_copy, payload);
     case CHANGE_NOTE_IS_DONE:
@@ -142,6 +167,8 @@ function data_handler(state, action) {
       return on_edit_note(state_copy, payload);
     case GO_TO_CURR_DATE:
       return on_go_to_curr_date(state_copy);
+    case INIT_DAYS_TO_SHOW:
+      return on_set_days_to_show(state_copy);
     default:
       return state_copy;
   }

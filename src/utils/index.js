@@ -22,9 +22,7 @@ function delete_note(set_all_data, note_title) {
 function edit_note(set_all_data, note) {
     return () => set_all_data({ type: REDUCER_TYPES.EDIT_NOTE, payload: note })
 }
-function switch_to_curr_date(set_all_data) {
-    // console.log("click");
-    
+function switch_to_curr_date(set_all_data) {    
     return () => set_all_data({ type: REDUCER_TYPES.GO_TO_CURR_DATE })
 }
 
