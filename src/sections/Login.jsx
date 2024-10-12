@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 
 export default function Login() {
   const [hasAccount, setHasAccount] = useState(false);
-  const {logined} = useContext(Logined)
+  const {logined, login} = useContext(Logined)
 
   if (logined) {    
     return <Navigate to="/" />;
@@ -21,8 +21,12 @@ export default function Login() {
             <span className="text-4xl">Calendar</span>
           </div>
         </div>
-        <div className="w-[360px] flex flex-col">
+        <div className="w-[360px] max-phone:w-full flex flex-col">
           {hasAccount ? <SignInForm setHasAccount={setHasAccount}/> : <SignUpForm setHasAccount={setHasAccount}/>}
+        </div>
+
+        <div onClick={() => login()} className="w-full flex justify-center opacity-70">
+          <p>Go in as incognito</p>
         </div>
       </div>
       <div className="w-fit max-md:hidden">

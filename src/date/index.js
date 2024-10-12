@@ -47,28 +47,12 @@ function get_days_in_month(month) {
     return days_array;
 }
 
-// function get_days_to_show(data, quick_access) {
 
-//     const days_to_show = [...quick_access.curr_month.days];
-//     const day_of_week = quick_access.curr_month.days[0].day_of_week - 1;
-//     const days_of_last_month = data.all[quick_access.curr_month.arr_ind - 1].days.slice(-day_of_week);
-
-//     if (day_of_week !== "0") {
-//         days_to_show.unshift(...days_of_last_month);
-
-//         const days_of_next_month = data.all[quick_access.curr_month.arr_ind + 1].days.slice(0, 34 - days_to_show.length);
-
-//         days_to_show.push(...days_of_next_month);
-//     }
-
-//     return days_to_show;
-// }
 
 
 
 export function init_data_obj() {
-    // const ls_data = get_data_from_ls();
-    const ls_data = false;
+    const ls_data = get_data_from_ls();
 
     const data = ls_data || {
         all: [],

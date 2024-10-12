@@ -16,7 +16,7 @@
 
 @layer components {
   .gen_input {
-    @apply flex flex-col bg-light_gray w-full py-2.5 px-4 rounded-lg;
+    @apply flex flex-col bg-light_gray w-full py-2.5 px-4 rounded-lg ;
   }
   .gen_input span {
     @apply text-dark_gray text-sm font-medium;

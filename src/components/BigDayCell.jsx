@@ -6,7 +6,7 @@ import { Data } from "../context";
 import { SidebarUtils } from "../context";
 
 export default function BigDayCell(props) {
-  const { notes, day_number, is_selected } = props;
+  const { notes, day_number, is_selected, is_disabled } = props;
 
   const notes_to_show = notes.slice(0, 2);
   const hidden_notes_countity = notes.slice(2).length;

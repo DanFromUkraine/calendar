@@ -1,11 +1,12 @@
 import { useContext, useEffect } from "react";
 
-import { Data } from "../context";
+import { Data, Logined } from "../context";
 import S_Calendar_table from "./S_Calendar_table";
 import { REDUCER_TYPES } from "../constants";
 
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import NavLastMonth from "./NavLastMonth";
 import NavNextMonth from "./NavNextMonth";
@@ -24,10 +25,11 @@ export default function Sidebar() {
     set_all_data,
   } = useContext(Data);
 
+  const {logout} = useContext(Logined);
+
   useEffect(() => {
     set_all_data({ type: REDUCER_TYPES.INIT_DAYS_TO_SHOW });
   }, []);
-
 
   const {
     is_shown,
@@ -94,9 +96,14 @@ export default function Sidebar() {
         <>
           <RenderNotes notes_list={notes_list} />
 
-          <AddEventWrapper className="absolute bottom-4 right-4">
-            <AddCircleIcon />
-          </AddEventWrapper>
+          <div className="relative flex justify-between -bottom-96 p-4 w-full">
+            <span onClick={() => logout()}>
+              <LogoutIcon />
+            </span>
+            <AddEventWrapper>
+              <AddCircleIcon />
+            </AddEventWrapper>
+          </div>
         </>
       )}
     </div>
