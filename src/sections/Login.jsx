@@ -1,10 +1,16 @@
 import { SomeLogo, LoginPattern } from "../assets";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { SignInForm, SignUpForm } from "../components";
-
+import { Logined } from "../context";
+import { Navigate } from "react-router-dom";
 
 export default function Login() {
   const [hasAccount, setHasAccount] = useState(false);
+  const {logined} = useContext(Logined)
+
+  if (logined) {    
+    return <Navigate to="/" />;
+  }
 
   return (
     <main className="flex justify-evenly gothic">

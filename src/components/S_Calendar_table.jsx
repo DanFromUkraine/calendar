@@ -7,9 +7,6 @@ export default function S_Calendar_table() {
   const { all_data } = useContext(Data);
   const { days_to_show } = all_data.quick_access;
 
-
-  console.log({days_to_show})
-
   return (
     <div className="grid grid-cols-7">
       {day_names.map((day, i) => (

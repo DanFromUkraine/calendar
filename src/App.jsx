@@ -1,5 +1,5 @@
 // import { Home, Login } from "./sections";
-import { AuthProvider ,ProtectedRoute } from "./components";
+import { AuthProvider, ProtectedRoute } from "./components";
 import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 
@@ -21,6 +21,5 @@ export default function App() {
         />
       </Routes>
     </AuthProvider>
-
   );
 }

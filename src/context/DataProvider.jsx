@@ -54,7 +54,6 @@ function curr_month_nav_right(state_copy) {
 }
 
 function on_create_note(state_copy, payload) {
-  console.log({ payload });
 
   const notes = state_copy.quick_access.curr_month.days.find(
     ({ day_number }) => day_number === payload.day.day_number
@@ -108,8 +107,6 @@ function on_go_to_curr_date(state_copy) {
   quick_access.last_day_selected = day_data;
   quick_access.curr_month = month_data;
 
-  console.log(state_copy.quick_access.days_to_show);
-
   return after_action(state_copy);
 }
 
@@ -127,7 +124,6 @@ function on_set_days_to_show(state_copy) {
           .map((day) => ({ ...day, is_disabled: true }))
       : [];
 
-  console.log({ day_of_week });
 
   const next_month = state_copy.all[quick_access.curr_month.arr_ind + 1];
 
@@ -137,11 +133,8 @@ function on_set_days_to_show(state_copy) {
   const days_of_next_month = next_month.days
     .slice(0, 42 - days_to_show.length)
     .map((day) => ({ ...day, is_disabled: true }));
-  console.log(days_to_show.length);
 
   days_to_show.push(...days_of_next_month);
-
-  console.log({ days_of_next_month });
 
   quick_access.days_to_show = days_to_show;
 

@@ -19,7 +19,7 @@ import AddEventWrapper from "./AddEventWrapper";
 export default function Sidebar() {
   const {
     all_data: {
-      quick_access: { curr_month, all_notes, last_day_selected, days_to_show },
+      quick_access: { curr_month, all_notes, last_day_selected },
     },
     set_all_data,
   } = useContext(Data);
@@ -27,8 +27,6 @@ export default function Sidebar() {
   useEffect(() => {
     set_all_data({ type: REDUCER_TYPES.INIT_DAYS_TO_SHOW });
   }, []);
-
-  console.log({ days_to_show });
 
 
   const {

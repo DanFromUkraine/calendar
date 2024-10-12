@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, signInWithRedirect, getAuth, getRedirectResult, createUserWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, signInWithRedirect, getAuth, getRedirectResult, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 
@@ -33,14 +33,12 @@ export function redirect_login() {
 
             // The signed-in user info.
             const user = result.user;
-            console.log({ user });
-            console.log("kinda success");
+
 
 
             // IdP data available using getAdditionalUserInfo(result)
             // ...
         }).catch((error) => {
-            console.log("kinda fail");
 
             // Handle Errors here.
             // const errorCode = error.code;
@@ -78,10 +76,28 @@ export function createUserWithPassword({ email, password }, on_success, on_fail)
         });
 }
 
+export function signInWithPassword({ email, password }, on_success) {
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+
+            on_success();
+
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.log(errorMessage)
+        });
+}
+
 
 const db = getFirestore(app);
 
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
 
 // try {
 //   const docRef = addDoc(collection(db, "users"), {

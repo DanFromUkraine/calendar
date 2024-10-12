@@ -8,9 +8,7 @@ export default function BigCalendar() {
     quick_access: { curr_month },
   } = useContext(Data).all_data;
 
-  console.log({curr_month});
   
-
   return (
     <div className="grid grid-cols-7 custom_border border-x-0">
       {BIG_CALENDAR_DAYS.map(({ img, name }, i) => (

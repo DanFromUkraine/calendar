@@ -1,13 +1,23 @@
 import GenFormInput from "./GenFormInput";
+import { useContext } from "react";
+import { Logined } from "../context";
+import { signInWithPassword } from "../firebase";
 
 export default function SignInForm({ setHasAccount }) {
-  console.log("Sign In");
   
+  const {login} = useContext(Logined);
+
+  const on_success = () => login();
+
+  const onSubmit = (values) => {
+    signInWithPassword(values, on_success);
+  }
+
   return (
     <>
       <h2 className="font-bold text-4xl py-4">Sign In</h2>
 
-      <GenFormInput />
+      <GenFormInput onSubmit={onSubmit}/>
 
       <span
         onClick={setHasAccount.bind(null, false)}
